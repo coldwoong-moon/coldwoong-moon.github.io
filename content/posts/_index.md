@@ -1,8 +1,11 @@
 ---
-title: "Posts"
+title: Posts
 date: 2024-09-07
 draft: false
+created: 2024-09-08T00:46:04+09:00
+modified: 2024-09-08T00:46:54+09:00
 ---
+# _index
 
 관심있는 게시물을 확인해보세요.
 
