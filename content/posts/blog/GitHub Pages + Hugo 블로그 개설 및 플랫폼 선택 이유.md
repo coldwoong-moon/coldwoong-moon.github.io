@@ -1,10 +1,10 @@
 ---
-title: GitHub Pages + Hugo 블로그 개설 및 이유
+title: GitHub Pages + Hugo 블로그 개설 및 플랫폼 선택 이유
 date: 2024-09-08 01:00+09:00
 draft: false
 showDateUpdated: true
 created: 2024-09-08T01:05:17+09:00
-modified: 2024-09-08T02:33:44+09:00
+modified: 2024-09-08T02:46:24+09:00
 tags:
   - github
   - pages
@@ -43,8 +43,7 @@ Hugo 테마로 [Congo 테마](https://github.com/jpanther/congo)를 선택했습
 3. Repository Settings   Pages > GitHub Actions 활성화 (`Hugo` Workflow 검색)
 4. GitHub Actions `Commit`
 위 과정을 모두 마치고 main 브랜치로 Commit을 Push 하게 되면 블로그가 배포됩니다. (이미 commit 이 존재하면 최신 커밋 기준으로 1회 배포)
-   ![](with-woong.github.io/public/posts/github-pages-+-hugo-블로그를-선택한-이유/file-20240908-013221745.jpg)
-
+![](file-20240908-013221745.jpg)
 ## 마무리
 
 바뀌어가는 계절과 함께 새로운 블로그를 개설하게 되어 마음이 설레이네요. 이 공간이 단순한 개인 기록을 넘어 여러분과 함께 성장하고 배우는 장이 되어주기를 바랍니다. 제 글을 통해 여러분께 작은 영감이라도 드릴 수 있다면 저는 큰 기쁨을 느낄 수 있을거에요. :star-struck:
