@@ -1,5 +1,5 @@
 ---
-title: "Grow:Woong :tada:"
+title: "With Woong! :tada:"
 description: "개발 방법론, 협업, 생산성 향상에 관심을 가지는 개발자입니다"
 ---
 

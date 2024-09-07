@@ -11,12 +11,12 @@
 # ordered by weight from lowest to highest.
 
 [[main]]
-  name = "포스트"
+  name = "Posts"
   pageRef = "posts"
   weight = 10
 
 [[main]]
-  name = "태그"
+  name = "Tags"
   pageRef = "tags"
   weight = 20
 
