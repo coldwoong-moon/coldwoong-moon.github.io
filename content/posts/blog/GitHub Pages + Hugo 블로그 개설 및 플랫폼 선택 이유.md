@@ -4,7 +4,7 @@ date: 2024-09-08 01:00+09:00
 draft: false
 showDateUpdated: true
 created: 2024-09-08T01:05:17+09:00
-modified: 2024-09-19T09:37:55+09:00
+modified: 2024-09-19T10:55:09+09:00
 tags:
   - github
   - pages
@@ -41,11 +41,10 @@ Hugo 테마로 [Congo 테마](https://github.com/jpanther/congo)를 선택했습
 1. 테마 홈페이지 및 데모 페이지를 참고하여 블로그 구조 생성
 2. GitHub Repository에 Push (Repository 이름은 `[github-username].github.io`)
 3. Repository Settings   Pages > GitHub Actions 활성화 (`Hugo` Workflow 검색)
+	![](../file-20240908-013221745.jpg)
 4. GitHub Actions `Commit`
 위 과정을 모두 마치고 main 브랜치로 Commit을 Push 하게 되면 블로그가 배포됩니다. (이미 commit 이 존재하면 최신 커밋 기준으로 1회 배포)
-![](../file-20240908-013221745.jpg)
-![](file-20240908-013221745.jpg)
-![](./file-20240908-013221745.jpg)
+
 ## 마무리
 
 바뀌어가는 계절과 함께 새로운 블로그를 개설하게 되어 마음이 설레이네요. 이 공간이 단순한 개인 기록을 넘어 여러분과 함께 성장하고 배우는 장이 되어주기를 바랍니다. 제 글을 통해 여러분께 작은 영감이라도 드릴 수 있다면 저는 큰 기쁨을 느낄 수 있을거에요. :star-struck:
