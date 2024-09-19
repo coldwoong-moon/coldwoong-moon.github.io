@@ -4,7 +4,7 @@ date: 2024-09-08 01:00+09:00
 draft: false
 showDateUpdated: true
 created: 2024-09-08T01:05:17+09:00
-modified: 2024-09-19T09:12:46+09:00
+modified: 2024-09-19T09:37:55+09:00
 tags:
   - github
   - pages
@@ -43,7 +43,7 @@ Hugo 테마로 [Congo 테마](https://github.com/jpanther/congo)를 선택했습
 3. Repository Settings   Pages > GitHub Actions 활성화 (`Hugo` Workflow 검색)
 4. GitHub Actions `Commit`
 위 과정을 모두 마치고 main 브랜치로 Commit을 Push 하게 되면 블로그가 배포됩니다. (이미 commit 이 존재하면 최신 커밋 기준으로 1회 배포)
-![](../file-20240908-030400684.jpg)
+![](../file-20240908-013221745.jpg)
 ![](file-20240908-013221745.jpg)
 ![](./file-20240908-013221745.jpg)
 ## 마무리
