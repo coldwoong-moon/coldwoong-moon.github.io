@@ -3,7 +3,7 @@ languageName = "한국어"
 languageDirection = "ltr"
 weight = 1
 
-title = "With Woong :rocket:"
+title = "성장지향 웅"
 copyright = "&copy; 2024 Congo contributors"
 
 [params]
@@ -19,7 +19,7 @@ copyright = "&copy; 2024 Congo contributors"
   bio = "🚀 Software Developer (2022.01 ~ )"
   links = [
 #    { x-twitter = "https://twitter.com/" },
-    { linkedin = "https://linkedin.com/" },
+    { linkedin = "https://www.linkedin.com/in/chanwoong-moon-0b215b208/" },
     { instagram = "https://www.instagram.com/cold_woong.moon/" },
 #    { youtube = "https://youtube.com/" },
   ]

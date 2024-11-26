@@ -1,6 +1,6 @@
 ---
 title: GitHub Pages + Hugo 블로그 개설 및 플랫폼 선택 이유
-date: 2024-09-08 01:00+09:00
+date: 2024-09-08T01:05:17+09:00
 draft: false
 showDateUpdated: true
 created: 2024-09-08T01:05:17+09:00
