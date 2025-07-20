@@ -139,6 +139,11 @@
   {{ partial "vendor.html" . }}
   {{/* Analytics */}}
   {{ partial "analytics.html" . }}
+  {{/* Google AdSense */}}
+  {{ if and .Site.Params.adsense.enable .Site.Params.adsense.client }}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ .Site.Params.adsense.client }}"
+         crossorigin="anonymous"></script>
+  {{ end }}
   {{/* Extend head - eg. for custom analytics scripts, etc. */}}
   {{ if templates.Exists "partials/extend-head.html" }}
     {{ partial "extend-head.html" . }}

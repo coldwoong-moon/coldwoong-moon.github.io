@@ -80,3 +80,10 @@ fingerprintAlgorithm = "sha256"
   # bing = ""
   # pinterest = ""
   # yandex = ""
+
+[adsense]
+  enable = true
+  client = "ca-pub-9092255711462498"
+  slot_sidebar = "1234567890"  # Replace with your actual ad slot ID
+  slot_article = "0987654321"  # Replace with your actual ad slot ID
+  slot_list = "5678901234"     # Replace with your actual ad slot ID
