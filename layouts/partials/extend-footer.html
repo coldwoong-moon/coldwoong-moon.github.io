@@ -1,0 +1,12 @@
+{{/* ToC Highlight JavaScript */}}
+{{ if .Params.showTableOfContents | default (.Site.Params.article.showTableOfContents | default false) }}
+  {{ if in .TableOfContents "<ul" }}
+    {{ $tocHighlight := resources.Get "js/toc-highlight.js" | resources.Minify | resources.Fingerprint "sha256" }}
+    <script
+      defer
+      type="text/javascript"
+      src="{{ $tocHighlight.RelPermalink }}"
+      integrity="{{ $tocHighlight.Data.Integrity }}"
+    ></script>
+  {{ end }}
+{{ end }}

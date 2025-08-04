@@ -3,7 +3,7 @@ languageName = "한국어"
 languageDirection = "ltr"
 weight = 1
 
-title = "성장지향 웅"
+title = "AI 시대의 내 길 찾기"
 copyright = "&copy; 2024 Congo contributors"
 
 [params]
@@ -13,7 +13,7 @@ copyright = "&copy; 2024 Congo contributors"
 
 [params.author]
   name = "문찬웅(ChanWoong Moon)"
-  image = "img/profile.jpeg"
+  image = "img/스크린샷 2025-08-04 16.29.26.png"
 #  image = "img/AB4353BF-16C2-4042-BE85-1700148941DC_4_5005_c.jpeg"
   headline = "새로운 경험을 즐겨요 :smile:"
   bio = "🚀 Software Developer"

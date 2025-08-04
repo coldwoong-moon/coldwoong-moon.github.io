@@ -1,0 +1,478 @@
+/* Pretendard 폰트 적용 (코드 명시적 제외) */
+body, 
+h1, h2, h3, h4, h5, h6,
+p, div, a, button, input, select, textarea,
+.toc, .toc a {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif !important;
+}
+
+/* span은 코드가 아닌 경우에만 Pretendard 적용 */
+span:not(code span):not(pre span) {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif !important;
+}
+
+/* 코드 폰트는 JetBrains Mono 사용 - 높은 특정성 */
+pre,
+pre *,
+code,
+code *,
+kbd,
+kbd *,
+samp,
+samp *,
+.prose pre,
+.prose pre *,
+.prose code,
+.prose code *,
+.highlight,
+.highlight *,
+.chroma,
+.chroma * {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace !important;
+}
+
+/* Pretendard 폰트 최적화 */
+.prose {
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: -0.004em;
+}
+
+.prose p {
+  font-weight: 400;
+  letter-spacing: -0.003em;
+}
+
+.prose strong {
+  font-weight: 700;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+
+/* 한글 최적화 */
+.prose p:lang(ko),
+.prose li:lang(ko) {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 본문 헤더 하이라이트 스타일 - 심플 */
+.prose h2.heading-active,
+.prose h3.heading-active,
+.prose h4.heading-active {
+  position: relative;
+  background: rgba(59, 130, 246, 0.05);
+  border-left: 3px solid rgb(59, 130, 246);
+  padding-left: 1rem;
+  margin-left: -1rem;
+  transition: all 0.2s ease;
+}
+
+.dark .prose h2.heading-active,
+.dark .prose h3.heading-active,
+.dark .prose h4.heading-active {
+  background: rgba(96, 165, 250, 0.08);
+  border-left-color: rgb(96, 165, 250);
+}
+
+/* 헤더 왼쪽에 강조 표시 - 제거 */
+
+/* 헤더 텍스트 강조 - 심플 */
+.prose h2.heading-active,
+.prose h3.heading-active,
+.prose h4.heading-active {
+  color: rgb(30, 64, 175) !important;
+}
+
+.dark .prose h2.heading-active,
+.dark .prose h3.heading-active,
+.dark .prose h4.heading-active {
+  color: rgb(147, 197, 253) !important;
+}
+
+/* 본문과 ToC 레이아웃 - 메뉴바와 정렬 */
+/* article 영역 전체 너비 사용 */
+article {
+  width: 100%;
+}
+
+/* 본문 섹션이 전체 너비 사용하도록 */
+article > section.flex {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* 본문 너비를 플렉스로 자동 조정 */
+.prose {
+  max-width: none !important;
+  width: 100%;
+}
+
+.min-w-0.max-w-prose {
+  max-width: none !important;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  /* ToC와 본문 레이아웃 */
+  section.flex.lg\:flex-row {
+    display: flex;
+    gap: 3rem;
+    width: 100%;
+  }
+  
+  /* ToC 컨테이너 고정 너비 */
+  .order-first.lg\:order-last {
+    width: 18rem !important;
+    max-width: 18rem !important;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+  
+  /* 본문 영역이 나머지 공간 모두 사용 */
+  .min-h-0.min-w-0.grow {
+    flex: 1 1 auto;
+    max-width: calc(100% - 21rem); /* ToC 너비 + gap 고려 */
+    width: 100%;
+  }
+  
+  /* ToC sticky 유지 */
+  .toc.lg\:sticky {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1280px) {
+  /* 큰 화면에서 ToC 조금 더 넓게 */
+  .order-first.lg\:order-last {
+    width: 20rem !important;
+    max-width: 20rem !important;
+  }
+  
+  .min-h-0.min-w-0.grow {
+    max-width: calc(100% - 23rem);
+  }
+}
+
+/* ToC 스타일 */
+.toc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* 본문 내 텍스트 가독성을 위한 최대 너비 제한 */
+.prose p,
+.prose ul,
+.prose ol,
+.prose blockquote {
+  max-width: 75ch;
+}
+
+/* 코드 블록과 테이블은 전체 너비 사용 */
+.prose pre,
+.prose table {
+  max-width: 100%;
+}
+
+/* 기본 스크롤 설정 */
+html {
+  scroll-behavior: smooth; /* ToC 클릭 시에만 부드러운 스크롤 */
+  scroll-padding-top: 5rem; /* 헤더 높이 고려 */
+}
+
+/* 스크롤바 스타일링 */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(156, 163, 175, 0.1);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.3);
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.5);
+  background-clip: content-box;
+}
+
+/* 다크모드 스크롤바 */
+.dark ::-webkit-scrollbar-track {
+  background: rgba(55, 65, 81, 0.2);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.4);
+  background-clip: content-box;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(107, 114, 128, 0.5);
+  background-clip: content-box;
+}
+
+/* Firefox 스크롤바 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.3) rgba(156, 163, 175, 0.1);
+}
+
+.dark * {
+  scrollbar-color: rgba(75, 85, 99, 0.4) rgba(55, 65, 81, 0.2);
+}
+
+/* 밑줄 효과 - 제거 */
+
+/* 애니메이션 제거 - 더 깔끔한 스타일을 위해 */
+
+/* ToC 하이라이트 스타일 - 미니멀 */
+.toc a {
+  display: block;
+  padding: 0.25rem 0.25rem;
+  margin: 0.125rem 0;
+  transition: all 0.15s ease;
+  color: rgb(107, 114, 128);
+  position: relative;
+  font-size: 0.875rem;
+}
+
+.dark .toc a {
+  color: rgb(156, 163, 175);
+}
+
+/* ToC 호버 효과 */
+.toc a:hover {
+  color: rgb(59, 130, 246) !important;
+  padding-left: 0.5rem;
+}
+
+.dark .toc a:hover {
+  color: rgb(96, 165, 250) !important;
+}
+
+/* 현재 보고 있는 섹션 하이라이트 */
+.toc a.toc-active {
+  font-weight: 600;
+  color: rgb(29, 78, 216) !important;
+  border-left: 2px solid rgb(59, 130, 246);
+  padding-left: 0.5rem;
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.dark .toc a.toc-active {
+  color: rgb(147, 197, 253) !important;
+  border-left-color: rgb(96, 165, 250);
+  background: rgba(96, 165, 250, 0.08);
+}
+
+/* 아름다운 코드블럭 스타일링 - 라이트/다크 테마 공통 */
+.prose pre {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace !important;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+  border: 1px solid rgba(71, 85, 105, 0.3);
+  border-radius: 0.75rem;
+  padding: 1.5rem !important;
+  margin: 1.5rem 0 !important;
+  overflow-x: auto;
+  box-shadow: 
+    0 10px 25px -5px rgba(0, 0, 0, 0.3),
+    0 10px 10px -5px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+/* 코드블럭 내부 코드 스타일 */
+.prose pre code {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace !important;
+  background-color: transparent !important;
+  color: #f1f5f9 !important;
+  font-weight: 400;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  font-variant-ligatures: common-ligatures;
+  letter-spacing: 0;
+}
+
+/* Nord 테마 - 차가운 북극풍 미니멀 디자인 */
+.prose pre code {
+  color: #d8dee9 !important; /* Nord Snow Storm - 기본 텍스트 */
+}
+
+/* 키워드 (if, for, class, function, interface, enum) */
+.prose pre .k, .prose pre .kn, .prose pre .kp, .prose pre .kr, .prose pre .kt, .prose pre .kd,
+.prose pre .chroma .k, .prose pre .chroma .kn, .prose pre .chroma .kp, .prose pre .chroma .kr, .prose pre .chroma .kt, .prose pre .chroma .kd,
+.chroma .k, .chroma .kn, .chroma .kp, .chroma .kr, .chroma .kt, .chroma .kd {
+  color: #81a1c1 !important; /* Nord Frost - 차가운 파랑 */
+  font-weight: 600;
+}
+
+/* 클래스명 */
+.prose pre .nc, .prose pre .nn,
+.prose pre .chroma .nc, .prose pre .chroma .nn,
+.chroma .nc, .chroma .nn {
+  color: #8fbcbb !important; /* Nord Frost Cyan - 클래스 전용 */
+  font-weight: 600;
+}
+
+/* 함수명/메서드명 */
+.prose pre .nf, .prose pre .fm,
+.prose pre .chroma .nf, .prose pre .chroma .fm,
+.chroma .nf, .chroma .fm {
+  color: #88c0d0 !important; /* Nord Frost Light Blue - 함수 전용 */
+  font-weight: 500;
+}
+
+/* 인터페이스/타입명 */
+.prose pre .nt, .prose pre .ni,
+.prose pre .chroma .nt, .prose pre .chroma .ni,
+.chroma .nt, .chroma .ni {
+  color: #5e81ac !important; /* Nord Frost Dark Blue - 인터페이스/타입 */
+  font-weight: 500;
+}
+
+/* 변수명 */
+.prose pre .nv, .prose pre .vc, .prose pre .vg, .prose pre .vi, .prose pre .vm,
+.prose pre .chroma .nv, .prose pre .chroma .vc, .prose pre .chroma .vg, .prose pre .chroma .vi, .prose pre .chroma .vm,
+.chroma .nv, .chroma .vc, .chroma .vg, .chroma .vi, .chroma .vm {
+  color: #eceff4 !important; /* Nord Snow Storm Light - 변수 */
+}
+
+/* 상수/열거형 */
+.prose pre .no, .prose pre .nb,
+.prose pre .chroma .no, .prose pre .chroma .nb,
+.chroma .no, .chroma .nb {
+  color: #d08770 !important; /* Nord Aurora Orange - 상수 */
+  font-weight: 500;
+}
+
+/* 문자열 */
+.prose pre .s, .prose pre .s1, .prose pre .s2, .prose pre .sb, .prose pre .sc, .prose pre .sd, .prose pre .se, .prose pre .sh, .prose pre .si, .prose pre .sx, .prose pre .sr,
+.prose pre .chroma .s, .prose pre .chroma .s1, .prose pre .chroma .s2, .prose pre .chroma .sb, .prose pre .chroma .sc, .prose pre .chroma .sd, .prose pre .chroma .se, .prose pre .chroma .sh, .prose pre .chroma .si, .prose pre .chroma .sx, .prose pre .chroma .sr,
+.chroma .s, .chroma .s1, .chroma .s2, .chroma .sb, .chroma .sc, .chroma .sd, .chroma .se, .chroma .sh, .chroma .si, .chroma .sx, .chroma .sr {
+  color: #a3be8c !important; /* Nord Aurora Green - 문자열 */
+}
+
+/* 숫자 */
+.prose pre .m, .prose pre .mb, .prose pre .mf, .prose pre .mh, .prose pre .mi, .prose pre .mo, .prose pre .il,
+.prose pre .chroma .m, .prose pre .chroma .mb, .prose pre .chroma .mf, .prose pre .chroma .mh, .prose pre .chroma .mi, .prose pre .chroma .mo, .prose pre .chroma .il,
+.chroma .m, .chroma .mb, .chroma .mf, .chroma .mh, .chroma .mi, .chroma .mo, .chroma .il {
+  color: #b48ead !important; /* Nord Aurora Purple - 숫자 */
+}
+
+/* 주석 */
+.prose pre .c, .prose pre .c1, .prose pre .ch, .prose pre .cm, .prose pre .cp, .prose pre .cpf, .prose pre .cs,
+.prose pre .chroma .c, .prose pre .chroma .c1, .prose pre .chroma .ch, .prose pre .chroma .cm, .prose pre .chroma .cp, .prose pre .chroma .cpf, .prose pre .chroma .cs,
+.chroma .c, .chroma .c1, .chroma .ch, .chroma .cm, .chroma .cp, .chroma .cpf, .chroma .cs {
+  color: #616e88 !important; /* Nord Polar Night Medium - 주석 */
+  font-style: italic;
+}
+
+/* 연산자 */
+.prose pre .o, .prose pre .ow,
+.prose pre .chroma .o, .prose pre .chroma .ow,
+.chroma .o, .chroma .ow {
+  color: #81a1c1 !important; /* Nord Frost Blue - 연산자 */
+  font-weight: 500;
+}
+
+/* 괄호/구두점 */
+.prose pre .p, .prose pre .w,
+.prose pre .chroma .p, .prose pre .chroma .w,
+.chroma .p, .chroma .w {
+  color: #eceff4 !important; /* Nord Snow Storm Light - 괄호 */
+}
+
+/* 속성값/어노테이션 */
+.prose pre .na, .prose pre .nd,
+.prose pre .chroma .na, .prose pre .chroma .nd,
+.chroma .na, .chroma .nd {
+  color: #ebcb8b !important; /* Nord Aurora Yellow - 속성 */
+}
+
+/* 기타 식별자 */
+.prose pre .n, .prose pre .ne, .prose pre .nl, .prose pre .nx, .prose pre .py,
+.prose pre .chroma .n, .prose pre .chroma .ne, .prose pre .chroma .nl, .prose pre .chroma .nx, .prose pre .chroma .py,
+.chroma .n, .chroma .ne, .chroma .nl, .chroma .nx, .chroma .py {
+  color: #d8dee9 !important; /* Nord Snow Storm - 기타 */
+}
+
+/* 에러 */
+.prose pre .err,
+.prose pre .chroma .err,
+.chroma .err {
+  color: #bf616a !important; /* Nord Aurora Red - 에러 */
+  background-color: transparent !important;
+}
+
+/* Git diff 추가/삭제 */
+.prose pre .gi,
+.prose pre .chroma .gi,
+.chroma .gi {
+  color: #a3be8c !important; /* 추가된 라인 - 녹색 */
+}
+
+.prose pre .gd,
+.prose pre .chroma .gd,
+.chroma .gd {
+  color: #bf616a !important; /* 삭제된 라인 - 빨간색 */
+}
+
+/* 기본 chroma 컨테이너 */
+.prose pre .chroma,
+.chroma {
+  color: #d8dee9 !important;
+}
+
+/* 아름다운 인라인 코드 스타일링 - 라이트 테마 */
+.prose code:not(pre code) {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace !important;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(99, 102, 241, 0.08) 100%) !important;
+  color: rgb(29, 78, 216) !important;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 0.9em;
+  font-variant-ligatures: common-ligatures;
+  box-shadow: 
+    0 1px 3px rgba(59, 130, 246, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* 다크 테마 인라인 코드 */
+.dark .prose code:not(pre code) {
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.15) 0%, rgba(129, 140, 248, 0.12) 100%) !important;
+  color: rgb(147, 197, 253) !important;
+  border: 1px solid rgba(96, 165, 250, 0.35);
+  box-shadow: 
+    0 1px 3px rgba(96, 165, 250, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* 일반 헤더 스타일 강화 (활성화되지 않은 상태) */
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: rgb(15, 23, 42) !important;
+  font-weight: 700 !important;
+}
+
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4 {
+  color: rgb(226, 232, 240) !important;
+}

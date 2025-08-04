@@ -1,5 +1,5 @@
 ---
-title: "With Woong! :tada:"
+title: "블로그에 방문해주셔서 감사합니다! :tada:"
 description: "개발 방법론, 협업, 생산성 향상에 관심을 가지는 개발자입니다"
 ---
 

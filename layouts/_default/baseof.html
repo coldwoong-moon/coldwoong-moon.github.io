@@ -51,5 +51,14 @@
         {{- partial "search.html" . -}}
       {{ end }}
     </div>
+    
+    {{/* ToC Highlight Script */}}
+    {{ if .IsPage }}
+      {{ if and (.Params.showTableOfContents | default (.Site.Params.article.showTableOfContents | default false)) (in .TableOfContents "<ul") }}
+        {{ $tocHighlight := resources.Get "js/toc-highlight.js" | resources.Minify | resources.Fingerprint "sha256" }}
+        <script defer src="{{ $tocHighlight.RelPermalink }}" integrity="{{ $tocHighlight.Data.Integrity }}"></script>
+      {{ end }}
+    {{ end }}
+    
   </body>
 </html>
