@@ -29,7 +29,9 @@
       "Bash(cat:*)",
       "Bash(/bin/cat public/css/main.bundle.min.ea6da93c691efa41e09094e89089c85976b40efd22189556821412d2290d92f1.css)",
       "Bash(find:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "deny": []
   }

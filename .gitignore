@@ -32,6 +32,3 @@ frontmatter.json
 
 # macOS system files
 .DS_Store
-
-# Hugo module cache
-/go.sum
