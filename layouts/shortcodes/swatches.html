@@ -1,0 +1,9 @@
+<div class="flex flex-wrap gap-4 justify-center">
+  {{ range slice "congo" "avocado" "fire" "ocean" "sapphire" "cherry" "slate" }}
+    <div class="flex flex-col items-center">
+      <div class="rounded-md p-4 text-center {{ . }}-scheme">
+        <span class="font-bold">{{ . }}</span>
+      </div>
+    </div>
+  {{ end }}
+</div>
