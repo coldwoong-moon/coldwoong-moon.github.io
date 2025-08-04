@@ -80,6 +80,7 @@
     "@type" "ListItem"
     "position" ($scratch.Get "count")
     "name" (.Title | humanize | title)
+    "item" .Permalink
   )) -}}
   
   {{- $scratch.SetInMap "breadcrumb" "@context" "https://schema.org" -}}
