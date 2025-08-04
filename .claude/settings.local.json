@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(chmod:*)",
+      "Bash(hugo mod:*)",
+      "Bash(hugo mod get:*)",
+      "Bash(hugo:*)",
+      "Bash(rm:*)",
+      "Bash(npm install)",
+      "Bash(npm audit:*)",
+      "Bash(wget:*)",
+      "Bash(tar:*)",
+      "Bash(cp:*)",
+      "Bash(timeout:*)",
+      "Bash(ls:*)",
+      "Bash(npm run build:*)",
+      "Bash(npx update-browserslist-db:*)",
+      "Bash(npm run dev:*)",
+      "Bash(NODE_ENV=production npx tailwindcss -i ./assets/css/main.css -o ./assets/css/compiled/main.css --minify)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(curl:*)",
+      "Bash(pkill:*)",
+      "Bash(grep:*)",
+      "Bash(npx tailwindcss:*)",
+      "Bash(go mod:*)",
+      "Bash(code:*)",
+      "Bash(cat:*)",
+      "Bash(/bin/cat public/css/main.bundle.min.ea6da93c691efa41e09094e89089c85976b40efd22189556821412d2290d92f1.css)",
+      "Bash(find:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": []
+  }
+}

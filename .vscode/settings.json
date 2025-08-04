@@ -1,0 +1,63 @@
+{
+  // Hugo 블로그 설정
+  "files.associations": {
+    "*.md": "markdown",
+    "*.toml": "toml"
+  },
+  
+  // Markdown 설정
+  "markdown.preview.breaks": true,
+  "markdown.extension.toc.levels": "2..6",
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "strings": "on",
+      "other": "on"
+    },
+    "editor.formatOnSave": false,
+    "editor.rulers": [80],
+    "editor.tabSize": 2
+  },
+  
+  // Paste Image 설정 (이미지를 static 폴더에 저장)
+  "pasteImage.path": "${projectRoot}/static/images",
+  "pasteImage.basePath": "${projectRoot}",
+  "pasteImage.forceUnixStyleSeparator": true,
+  "pasteImage.prefix": "img-",
+  "pasteImage.insertPattern": "![${imageFileName}](/images/${imageFileName})",
+  
+  // Markdown 미리보기 설정
+  "markdown.preview.resourceRoot": "${workspaceFolder}",
+  "markdown.styles": [
+    "https://cdn.jsdelivr.net/npm/github-markdown-css@5.5.1/github-markdown.min.css"
+  ],
+  
+  // 맞춤법 검사 설정
+  "cSpell.language": "en,ko",
+  "cSpell.enableFiletypes": [
+    "markdown",
+    "plaintext"
+  ],
+  
+  // Markdown 린트 설정
+  "markdownlint.config": {
+    "MD013": false, // 줄 길이 제한 비활성화
+    "MD033": false, // HTML 허용
+    "MD041": false  // 첫 줄 제목 규칙 비활성화
+  },
+  
+  // 파일 제외 설정
+  "files.exclude": {
+    "public/": true,
+    "resources/": true,
+    ".hugo_build.lock": true
+  },
+  
+  // 검색 제외 설정
+  "search.exclude": {
+    "public/**": true,
+    "resources/**": true,
+    "themes/**": true
+  }
+}

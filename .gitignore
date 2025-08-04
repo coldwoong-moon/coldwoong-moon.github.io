@@ -17,3 +17,21 @@ hugo.linux
 /.hugo_build.lock
 
 # End of https://www.toptal.com/developers/gitignore/api/hugo
+
+# Node modules
+node_modules/
+
+# VSCode local settings  
+.vscode/hugo.code-snippets
+frontmatter.json
+
+# Temporary and log files
+*.log
+/tmp/
+*.tmp
+
+# macOS system files
+.DS_Store
+
+# Hugo module cache
+/go.sum
