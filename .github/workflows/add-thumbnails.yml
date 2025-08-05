@@ -32,7 +32,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install requests pillow
+        pip install requests pillow pyyaml
 
     - name: Find posts without thumbnails and add them
       id: add-thumbnails
@@ -41,6 +41,8 @@ jobs:
         import os
         import requests
         import random
+        import re
+        import yaml
         from pathlib import Path
         import json
 
@@ -53,12 +55,91 @@ jobs:
         else:
             USE_LOREM_PICSUM = False
 
-        # Categories for random selection
-        CATEGORIES = [
-            "nature landscape", "abstract background", "minimal wallpaper", 
-            "technology", "architecture", "pattern texture", "geometric",
-            "gradient", "mountains", "ocean waves", "forest", "city skyline"
+        # Content-based keyword mapping
+        CONTENT_KEYWORDS = {
+            # Programming and technology
+            "binaryformatter": ["binary code", "serialization", "data security", "programming"],
+            ".net": ["dotnet programming", "microsoft technology", "coding"],
+            "c#": ["csharp programming", "visual studio", "coding"],
+            "serialization": ["data serialization", "binary data", "data format"],
+            "security": ["cybersecurity", "data protection", "security lock"],
+            "legacy": ["vintage technology", "old computer", "retro tech"],
+            
+            # Web development
+            "github": ["github logo", "version control", "git", "coding collaboration"],
+            "hugo": ["static site generator", "web development", "golang"],
+            "blog": ["blogging", "writing", "content creation", "laptop writing"],
+            "markdown": ["markdown editor", "text editor", "writing"],
+            "pages": ["web pages", "website", "web development"],
+            
+            # General categories
+            "tutorial": ["learning", "education", "guide book"],
+            "guide": ["guidebook", "instructions", "how-to"],
+            "problem": ["problem solving", "solution", "puzzle"],
+            "solution": ["solution", "answer", "lightbulb"],
+        }
+
+        # Fallback categories
+        FALLBACK_CATEGORIES = [
+            "abstract technology", "modern workspace", "programming", 
+            "digital art", "minimalist", "gradient background"
         ]
+
+        def extract_keywords_from_content(content):
+            """Extract relevant keywords from post content"""
+            keywords = []
+            
+            # Parse YAML front matter
+            if content.startswith('---'):
+                try:
+                    fm_end = content.find('---', 3)
+                    if fm_end > 0:
+                        front_matter = yaml.safe_load(content[3:fm_end])
+                        
+                        # Extract from title
+                        if 'title' in front_matter:
+                            title = front_matter['title'].lower()
+                            keywords.extend(title.split())
+                        
+                        # Extract from tags
+                        if 'tags' in front_matter and isinstance(front_matter['tags'], list):
+                            keywords.extend([tag.lower() for tag in front_matter['tags']])
+                        
+                        # Extract from categories
+                        if 'categories' in front_matter and isinstance(front_matter['categories'], list):
+                            keywords.extend([cat.lower() for cat in front_matter['categories']])
+                except:
+                    pass
+            
+            # Extract from content body (first 500 chars)
+            content_body = content[content.find('---', 3) + 3:] if content.startswith('---') else content
+            content_preview = content_body[:500].lower()
+            
+            # Look for technology terms
+            tech_terms = ['api', 'database', 'server', 'client', 'framework', 'library', 
+                         'algorithm', 'data structure', 'deployment', 'docker', 'kubernetes']
+            for term in tech_terms:
+                if term in content_preview:
+                    keywords.append(term)
+            
+            return keywords
+
+        def get_search_query_from_keywords(keywords):
+            """Generate search query from extracted keywords"""
+            matched_queries = []
+            
+            # Check against known keyword mappings
+            for keyword in keywords:
+                for key, queries in CONTENT_KEYWORDS.items():
+                    if key in keyword:
+                        matched_queries.extend(queries)
+            
+            if matched_queries:
+                # Use the most relevant query
+                return matched_queries[0]
+            else:
+                # Use fallback
+                return random.choice(FALLBACK_CATEGORIES)
 
         def download_image(url, filepath):
             """Download image from URL"""
@@ -103,9 +184,10 @@ jobs:
             if not post_dir.is_dir():
                 continue
             
-            # Check if thumbnail image already exists
+            # Check if thumbnail or feature image already exists
             has_thumbnail = any(
-                f.name.startswith(("thumbnail-", "feature-")) and f.suffix in [".jpg", ".png", ".webp"]
+                (f.name.startswith("thumbnail-") or f.name.startswith("feature-")) and 
+                f.suffix in [".jpg", ".png", ".webp"]
                 for f in post_dir.iterdir()
             )
             
@@ -115,14 +197,27 @@ jobs:
             
             print(f"📸 Adding thumbnail for: {post_dir.name}")
             
-            # Choose random category
-            category = random.choice(CATEGORIES)
+            # Read post content to determine appropriate image
+            index_path = post_dir / "index.md"
+            search_query = random.choice(FALLBACK_CATEGORIES)
+            
+            if index_path.exists():
+                try:
+                    with open(index_path, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                    
+                    # Extract keywords and determine search query
+                    keywords = extract_keywords_from_content(content)
+                    search_query = get_search_query_from_keywords(keywords)
+                    print(f"  🔍 Using search query: {search_query}")
+                except Exception as e:
+                    print(f"  ⚠️  Error reading content: {e}")
             
             # Get image
             if USE_LOREM_PICSUM:
                 image_url, photographer, source_url = get_lorem_picsum_image()
             else:
-                image_url, photographer, source_url = get_random_unsplash_image(category)
+                image_url, photographer, source_url = get_random_unsplash_image(search_query)
                 
                 if not image_url:
                     # Fallback to Lorem Picsum
@@ -130,7 +225,10 @@ jobs:
             
             if image_url:
                 # Download image as thumbnail image
-                image_path = post_dir / f"thumbnail-{category.replace(' ', '-')}.jpg"
+                # Clean up the search query for filename
+                clean_query = re.sub(r'[^a-z0-9-]', '-', search_query.lower())
+                clean_query = re.sub(r'-+', '-', clean_query).strip('-')
+                image_path = post_dir / f"thumbnail-{clean_query}.jpg"
                 
                 try:
                     download_image(image_url, image_path)
@@ -139,7 +237,6 @@ jobs:
                     print(f"  📷 Credit: {photographer}")
                     
                     # Update index.md with coverAlt if needed
-                    index_path = post_dir / "index.md"
                     if index_path.exists():
                         with open(index_path, 'r', encoding='utf-8') as f:
                             content = f.read()
