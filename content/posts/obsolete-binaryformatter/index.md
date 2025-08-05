@@ -15,7 +15,7 @@ tags:
     - Migration
 categories:
     - 개발
-lastmod: 2025-08-04T07:50:05.905Z
+lastmod: 2025-08-05T00:43:35.089Z
 ---
 
 > [MS .NET 8.0](https://learn.microsoft.com/ko-kr/dotnet/standard/serialization/binaryformatter-security-guide)에서의 BinaryFormatter 제거 권고사항
@@ -82,7 +82,7 @@ Microsoft에서는 해당 클래스의 사용 중지 원인 중 취약한 보안
 
 구조가 결정된 설정 파일 등에 대해서는 파일 그 자체를 읽는 것이 효율적이고 안정적인데, 현재는 코드에 대한 의존도가 지나치게 높기 때문에 안정성이 부족하다고 판단됩니다.
 
-BinaryFormatter는 마치 한국어로 작성된 글의 설명에 '이 글은 한국어(Serializer Assembly)로 작성되었고 홍길동(Data Assembly) 작가의 소설책(User Class)이다.'라는 설명이 있어야만 읽을 수 있는 느낌입니다. (클래스 내부의 필드 등도 일치해야 함)
+BinaryFormatter는 마치 한국어로 작성된 글에 '이 글은 한국어(Serializer Assembly)로 작성된 홍길동(Data Assembly) 작가의 소설책(User Class)이다.'라는 설명이 있어야만 읽을 수 있는 느낌입니다. (클래스 내부의 필드 등도 일치해야 함)
 
 향후 관련된 수정사항이 발생한다면 이러한 코드를 사용하는 로직을 반드시 수정해야할 것으로 보입니다.
 

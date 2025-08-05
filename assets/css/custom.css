@@ -476,3 +476,11 @@ html {
 .dark .prose h4 {
   color: rgb(226, 232, 240) !important;
 }
+
+/* 프로필 이미지 정방형 원형 처리 */
+.rounded-full {
+  width: 9rem !important;
+  height: 9rem !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}

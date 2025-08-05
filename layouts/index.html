@@ -1,7 +1,8 @@
 {{ define "main" }}
-  {{ $partial := print "home/" .Site.Params.homepage.layout ".html" }}
-  {{ if templates.Exists $partial }}
-    {{ partial $partial . }}
+  {{ if eq .Site.Params.homepage.layout "profile" }}
+    {{ partial "home/profile.html" . }}
+  {{ else if eq .Site.Params.homepage.layout "custom" }}
+    {{ partial "home/custom.html" . }}
   {{ else }}
     {{ partial "home/page.html" . }}
   {{ end }}

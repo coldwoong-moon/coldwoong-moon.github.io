@@ -13,8 +13,8 @@ copyright = "&copy; 2024 Congo contributors"
 
 [params.author]
   name = "문찬웅(ChanWoong Moon)"
-  image = "img/cat-profile.jpeg"
-#  image = "img/AB4353BF-16C2-4042-BE85-1700148941DC_4_5005_c.jpeg"
+#  image = "img/cat-profile.jpeg"
+  image = "img/AB4353BF-16C2-4042-BE85-1700148941DC_4_5005_c.jpeg"
   headline = "새로운 경험을 즐겨요 :smile:"
   bio = "🚀 Software Developer"
   links = [
