@@ -215,15 +215,15 @@
 
 /* ===== 4. 맨 위로 버튼 위치 조정 ===== */
 #to-top {
-  /* 기본 위치 조정 - 더 위로 올리기 */
-  bottom: 2rem !important;
+  /* 기본 위치 조정 - 데스크톱에서는 더 위로 */
+  bottom: 5rem !important;
 }
 
 #to-top a {
   /* 버튼 스타일 개선 */
   position: fixed !important;
-  bottom: 2rem !important;
-  right: 1.5rem !important;
+  bottom: 5rem !important;  /* 데스크톱: 화면 하단에서 5rem */
+  right: 2rem !important;
   width: 3rem !important;
   height: 3rem !important;
   display: flex !important;
@@ -253,13 +253,29 @@
   background: rgb(96, 165, 250) !important;
 }
 
+/* 태블릿에서 맨 위로 버튼 위치 조정 */
+@media (max-width: 1023px) {
+  #to-top {
+    bottom: 3rem !important;
+  }
+  
+  #to-top a {
+    bottom: 3rem !important;
+    right: 1.5rem !important;
+  }
+}
+
 /* 모바일에서 맨 위로 버튼 크기 조정 */
 @media (max-width: 640px) {
+  #to-top {
+    bottom: 2rem !important;
+  }
+  
   #to-top a {
     width: 2.5rem !important;
     height: 2.5rem !important;
     right: 1rem !important;
-    bottom: 1.5rem !important;
+    bottom: 2rem !important;
     font-size: 1rem !important;
   }
 }
