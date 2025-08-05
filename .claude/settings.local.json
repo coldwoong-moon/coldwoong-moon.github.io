@@ -33,7 +33,11 @@
       "Bash(git commit:*)",
       "Bash(git push:*)",
       "Bash(git submodule add:*)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "WebFetch(domain:pixabay.com)",
+      "WebFetch(domain:unsplash.com)",
+      "WebFetch(domain:localhost)",
+      "Bash(-print)"
     ],
     "deny": []
   }
