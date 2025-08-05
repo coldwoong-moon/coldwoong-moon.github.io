@@ -45,7 +45,8 @@
       "Bash(python3:*)",
       "Bash(pip3 install:*)",
       "Bash(brew install:*)",
-      "Bash(git fetch:*)"
+      "Bash(git fetch:*)",
+      "Bash(true)"
     ],
     "deny": []
   }

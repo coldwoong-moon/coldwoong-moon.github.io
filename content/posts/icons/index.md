@@ -6,7 +6,7 @@ lastmod: 2025-05-04
 description: "Congo에서의 아이콘 지원."
 slug: "icons"
 tags: ["아이콘", "예시", "숏코드"]
-showDateUpdated: true
+showDateUpdated: false
 ---
 
 Congo는 여러 [FontAwesome 6](https://fontawesome.com/icons) 아이콘에 대한 내장 지원을 제공합니다. 이들은 아이콘 파셜 또는 아이콘 숏코드를 통해 웹사이트에 포함할 수 있습니다.

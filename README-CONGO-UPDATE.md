@@ -5,23 +5,28 @@
 ## 📁 제공되는 스크립트
 
 ### 1. `check-congo-updates.sh` - 업데이트 확인 전용
+
 ```bash
 ./check-congo-updates.sh
 ```
+
 - **기능**: 현재 버전과 최신 버전을 비교
 - **안전**: 실제 업데이트 없이 확인만 수행
 - **정보**: 릴리스 노트, 시스템 정보 제공
 
 ### 2. `update-congo-theme.sh` - 메인 업데이트 스크립트
+
 ```bash
 ./update-congo-theme.sh
 ```
+
 - **기능**: 안전한 백업 후 업데이트 적용
 - **백업**: 자동 백업 생성 (`backups/congo-theme-YYYYMMDD-HHMMSS`)
 - **검증**: 업데이트 후 Hugo 빌드 테스트
 - **롤백**: 문제 발생 시 자동 롤백 스크립트 생성
 
 ### 3. `auto-update-congo.sh` - 자동 업데이트 (선택사항)
+
 ```bash
 # 확인만
 ./auto-update-congo.sh false
@@ -29,14 +34,17 @@
 # 자동 적용 (주의!)
 ./auto-update-congo.sh true
 ```
+
 - **기능**: 정기적인 업데이트 확인 및 자동 적용
 - **로깅**: 모든 작업을 `congo-update.log`에 기록
 - **알림**: 시스템 알림 지원 (macOS/Linux)
 
 ### 4. `rollback-congo-theme.sh` - 롤백 스크립트 (자동 생성)
+
 ```bash
 ./rollback-congo-theme.sh backups/congo-theme-20240101-120000
 ```
+
 - **기능**: 지정된 백업으로 완전 복원
 - **자동생성**: 업데이트 스크립트 실행 시 자동 생성
 
@@ -45,22 +53,26 @@
 ### 기본 워크플로우
 
 1. **업데이트 확인**
+
    ```bash
    ./check-congo-updates.sh
    ```
 
 2. **업데이트 적용** (필요한 경우)
+
    ```bash
    ./update-congo-theme.sh
    ```
 
 3. **업데이트 후 확인**
+
    ```bash
    npm install  # JavaScript 의존성 업데이트
    hugo server  # 로컬 서버로 테스트
    ```
 
 4. **문제 발생 시 롤백**
+
    ```bash
    ./rollback-congo-theme.sh backups/congo-theme-YYYYMMDD-HHMMSS
    ```
@@ -95,6 +107,7 @@ crontab -e
 ## 📂 백업 관리
 
 ### 백업 구조
+
 ```
 backups/
 ├── congo-theme-20240101-120000/
@@ -111,6 +124,7 @@ backups/
 
 ### 백업 정리
 오래된 백업을 정리하려면:
+
 ```bash
 # 30일 이상 된 백업 찾기
 find backups/ -name "congo-theme-*" -type d -mtime +30
@@ -124,11 +138,13 @@ find backups/ -name "congo-theme-*" -type d -mtime +30 -exec rm -rf {} \;
 ### 일반적인 문제
 
 **1. 권한 오류**
+
 ```bash
 chmod +x *.sh
 ```
 
 **2. Hugo 빌드 실패**
+
 ```bash
 # 모듈 정리
 hugo mod clean
@@ -140,12 +156,14 @@ hugo --gc --cleanDestinationDir
 ```
 
 **3. Go 모듈 문제**
+
 ```bash
 go mod download
 go mod verify
 ```
 
 ### 로그 확인
+
 ```bash
 # 최신 업데이트 로그 확인
 tail -f congo-update.log
@@ -161,22 +179,26 @@ grep "2024-01-01" congo-update.log
    - 기존 설정과 새 설정을 비교하여 필요한 항목 추가
 
 2. **의존성 업데이트**
+
    ```bash
    npm install
    npm audit fix
    ```
 
 3. **빌드 테스트**
+
    ```bash
    hugo --gc --minify
    ```
 
 4. **로컬 서버 테스트**
+
    ```bash
    hugo server -D
    ```
 
 5. **프로덕션 배포**
+
    ```bash
    # GitHub Pages의 경우
    git add -A

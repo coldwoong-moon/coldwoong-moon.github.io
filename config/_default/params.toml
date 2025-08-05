@@ -10,8 +10,8 @@ defaultAppearance = "light" # valid options: light or dark
 autoSwitchAppearance = true
 
 # SEO settings
-description = "개발자 coldwoong의 기술 블로그입니다. C#, .NET, 웹 개발, 프로그래밍 팁과 경험을 공유합니다."
-keywords = ["개발자", "프로그래밍", "C#", ".NET", "웹개발", "기술블로그", "소프트웨어", "개발팁"]
+description = "개발자 문찬웅의 기술 블로그입니다. IT 팁과 경험을 공유합니다."
+keywords = ["개발자", "프로그래밍", "C#", ".NET", "개발", "IT", "기술블로그", "소프트웨어", "개발팁"]
 
 enableSearch = true
 enableCodeCopy = true

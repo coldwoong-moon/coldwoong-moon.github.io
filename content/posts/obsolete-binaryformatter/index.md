@@ -2,7 +2,7 @@
 title: BinaryFormatter의 문제와 해결 방안
 date: 2025-08-04T12:00:00+09:00
 draft: false
-showDateUpdated: true
+showDateUpdated: false
 created: 2024-10-24
 modified: 2025-08-04T12:00:00+09:00
 tags:

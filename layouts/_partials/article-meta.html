@@ -21,9 +21,11 @@
   {{ if eq $scope "single" }}
     {{ $showDateUpdated = .Params.showDateUpdated | default (.Site.Params.article.showDateUpdated | default false) }}
   {{ else }}
-    {{ $showDateUpdated = .Params.showDateUpdated | default (.Site.Params.list.showDateUpdated | default false) }}
+    {{/* For list context, check list.showDateUpdated first, then fallback to article.showDateUpdated */}}
+    {{ $showDateUpdated = .Params.showDateUpdated | default (.Site.Params.list.showDateUpdated | default (.Site.Params.article.showDateUpdated | default false)) }}
   {{ end }}
   
+  {{/* Only add updated date if enabled and dates are different */}}
   {{ if and $showDateUpdated (ne (partial "functions/date.html" .Date) (partial "functions/date.html" .Lastmod)) }}
     {{ $meta.Add "partials" (slice (partial "meta/date-updated.html" .Lastmod)) }}
   {{ end }}

@@ -5,7 +5,7 @@ draft: true
 lastmod: "2022-01-24"
 description: "로렜 입술 돼로르 시 아멧"
 tags: ["마크다운", "텍스트", "예시", "라틴어"]
-showDateUpdated: true
+showDateUpdated: false
 xml: false
 ---
 

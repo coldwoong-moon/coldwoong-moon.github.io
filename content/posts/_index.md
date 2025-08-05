@@ -1,18 +1,16 @@
 ---
-title: "Content Samples"
-description: "See what's possible with Congo."
-
+title: Posts
+description: 이 페이지는 내가 작성한 모든 블로그 게시물을 한눈에 모아볼 수 있는 공간입니다. 다양한 주제의 글들을 편하게 찾아보세요! 😄
 cascade:
-  showEdit: false
+  showEdit: true
   showSummary: true
+lastmod: 2025-08-05T06:04:37.571Z
 ---
 
 {{< lead >}}
-Congo brings your content to life. :heart_eyes:
+이곳은 내가 작성한 모든 블로그 게시물을 한눈에 볼 수 있는 공간입니다. 다양한 주제의 글들을 편하게 탐색해보세요! :heart_eyes:
 {{< /lead >}}
 
-This section contains some demo pages that show how Congo renders different types of content. You can also see an example [taxonomy listing]({{< ref "tags" >}}) page.
-
-_**Sidenote:** This page is just a standard Congo article listing and Hugo has been configured to generate a `samples` content type and display article summaries._
+아래에는 최신 글부터 다양한 주제의 게시물들이 정리되어 있습니다. 관심 있는 글을 클릭해 자유롭게 읽어보세요. [Tags]({{< ref "tags" >}})을 통해 주제별로도 탐색할 수 있습니다.
 
 ---

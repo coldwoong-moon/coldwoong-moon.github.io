@@ -5,7 +5,7 @@ draft: true
 externalUrl: "https://jamespanther.com/writings/i-switched-from-google-analytics-to-fathom-analytics/"
 summary: "`externalUrl` 프론트 매터 매개변수는 어떤 URL이든 링크할 수 있습니다. 이 기사는 다른 기사와 동일하게 보이지만 Hugo 프로젝트 외부의 게시물로 링크됩니다."
 showReadingTime: false
-_build:
+build:
   render: "never"
   list: "local"
 ---
