@@ -61,6 +61,13 @@ body {
   max-height: none !important;
 }
 
+/* 헤더 sticky positioning 강화 */
+header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 50 !important;
+}
+
 /* 데스크톱에서 ToC sticky positioning 허용하되 스크롤 방지 */
 @media (min-width: 1024px) {
   .toc {
