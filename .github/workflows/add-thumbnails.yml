@@ -30,6 +30,7 @@ jobs:
         pip install requests pillow
 
     - name: Find posts without thumbnails and add them
+      id: add-thumbnails
       run: |
         python3 << 'EOF'
         import os
@@ -169,12 +170,19 @@ jobs:
             print("Posts updated:", ", ".join(posts_updated))
             
             # Create commit message
-            with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
-                f.write(f"posts_updated={len(posts_updated)}\n")
-                f.write(f"should_commit=true\n")
+            if 'GITHUB_OUTPUT' in os.environ:
+                with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+                    f.write(f"posts_updated={len(posts_updated)}\n")
+                    f.write(f"should_commit=true\n")
+            else:
+                print(f"::set-output name=posts_updated::{len(posts_updated)}")
+                print(f"::set-output name=should_commit::true")
         else:
-            with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
-                f.write(f"should_commit=false\n")
+            if 'GITHUB_OUTPUT' in os.environ:
+                with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+                    f.write(f"should_commit=false\n")
+            else:
+                print(f"::set-output name=should_commit::false")
         EOF
 
     - name: Commit changes
