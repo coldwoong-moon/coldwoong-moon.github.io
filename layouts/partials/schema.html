@@ -63,6 +63,16 @@
   {{- /* Source: https://bullaki.com/projects/web-design/seo-with-hugo-5-breadcrumbs/ */}}
   {{- $scratch := newScratch -}}
   {{- $scratch.Set "count" 1 -}}
+  
+  {{- /* Always add Home as first breadcrumb item */}}
+  {{- $scratch.Add "listItem" (slice (dict 
+    "@type" "ListItem"
+    "position" ($scratch.Get "count")
+    "name" "Home"
+    "item" (site.GetPage "/").Permalink
+  )) -}}
+  {{- $scratch.Add "count" 1 -}}
+  
   {{ partial "inline/breadcrumbData" (dict "scratch" $scratch "parent" .Parent) }}
 
   {{- with index (.GetTerms "categories") 0 -}}
