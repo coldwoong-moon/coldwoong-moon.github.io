@@ -9,6 +9,11 @@ on:
   schedule:
     - cron: '0 0 * * 0'  # Run weekly on Sunday
 
+permissions:
+  contents: write  # Allow the action to push changes
+  pages: write     # Allow pages deployment
+  id-token: write  # Allow OIDC token generation
+
 jobs:
   add-thumbnails:
     runs-on: ubuntu-latest
@@ -196,7 +201,5 @@ jobs:
 
     - name: Push changes
       if: steps.add-thumbnails.outputs.should_commit == 'true'
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
+      run: |
+        git push origin main
