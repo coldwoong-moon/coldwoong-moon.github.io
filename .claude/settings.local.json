@@ -63,7 +63,9 @@
       "mcp__microsoft-playwright-mcp__browser_take_screenshot",
       "mcp__microsoft-playwright-mcp__browser_evaluate",
       "mcp__microsoft-playwright-mcp__browser_close",
-      "Bash(git rebase:*)"
+      "Bash(git rebase:*)",
+      "mcp__microsoft-playwright-mcp__browser_resize",
+      "mcp__microsoft-playwright-mcp__browser_click"
     ],
     "deny": []
   }
