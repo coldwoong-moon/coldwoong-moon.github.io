@@ -15,7 +15,7 @@ tags:
     - Migration
 categories:
     - 개발
-lastmod: 2025-08-05T01:36:02.199Z
+lastmod: "2025-08-05T06:40:41.459Z"
 coverAlt: "Photo by Lorem Picsum from https://picsum.photos"
 ---
 
@@ -44,7 +44,7 @@ coverAlt: "Photo by Lorem Picsum from https://picsum.photos"
 
 ### BinaryFormatter의 엄격한 요구사항
 
-`System.Runtime.Serialization`의 `BinaryFormatter`는 **다음과 같은 요소를 모두 충족시켜야만 역직렬화가 가능합니다.**
+`System.Runtime.Serialization`의 `BinaryFormatter`는 다음과 같은 요소를 모두 충족시켜야만 역직렬화가 가능합니다.
 
 1. **직렬화할 때 사용된 Serializer 클래스의 Assembly 이름**
    - ex: MyApp.Common
@@ -326,7 +326,7 @@ catch (SerializationException ex)
 
 ---
 
-## 결론
+## 마치며
 
 BinaryFormatter는 .NET에서 오랜 기간 사용되어 왔으나, 구조적 유연성 부족과 보안 취약성, 외부 라이브러리 의존성 등으로 인해 더 이상 권장되지 않습니다. 실제로 다양한 프로젝트에서 발생한 문제들은 클래스 구조 변경, 어셈블리 이름 변경, 외부 라이브러리 업데이트 등으로 인해 기존 이진 파일을 사용할 수 없게 만드는 주요 원인이 되었습니다.
 

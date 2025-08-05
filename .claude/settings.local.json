@@ -46,7 +46,13 @@
       "Bash(pip3 install:*)",
       "Bash(brew install:*)",
       "Bash(git fetch:*)",
-      "Bash(true)"
+      "Bash(true)",
+      "Bash(gh run list:*)",
+      "Bash(gh browse:*)",
+      "Bash(gh run view:*)",
+      "Bash(gh workflow run:*)",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)"
     ],
     "deny": []
   }
