@@ -103,9 +103,9 @@ jobs:
             if not post_dir.is_dir():
                 continue
             
-            # Check if feature image already exists
+            # Check if thumbnail image already exists
             has_thumbnail = any(
-                f.name.startswith("feature") and f.suffix in [".jpg", ".png", ".webp"]
+                f.name.startswith(("thumbnail-", "feature-")) and f.suffix in [".jpg", ".png", ".webp"]
                 for f in post_dir.iterdir()
             )
             
@@ -129,8 +129,8 @@ jobs:
                     image_url, photographer, source_url = get_lorem_picsum_image()
             
             if image_url:
-                # Download image as feature image
-                image_path = post_dir / f"feature-{category.replace(' ', '-')}.jpg"
+                # Download image as thumbnail image
+                image_path = post_dir / f"thumbnail-{category.replace(' ', '-')}.jpg"
                 
                 try:
                     download_image(image_url, image_path)
@@ -195,7 +195,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add content/posts/*/feature-*.jpg
+        git add content/posts/*/thumbnail-*.jpg
         git add content/posts/*/index.md
         git commit -m "🖼️ Add missing thumbnails to ${{ steps.add-thumbnails.outputs.posts_updated }} posts"
 

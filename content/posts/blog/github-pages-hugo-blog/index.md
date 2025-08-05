@@ -12,6 +12,7 @@ tags:
   - blog
   - markdown
   - Web
+coverAlt: "Photo by Lorem Picsum from https://picsum.photos"
 ---
 
 안녕하세요. 오늘은 **GitHub Pages**와 **Hugo**로 블로그를 만들게 된 이유에 대해 이야기해보려고 합니다.
