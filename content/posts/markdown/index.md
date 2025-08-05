@@ -4,6 +4,7 @@ date: 2019-03-11
 draft: true
 description: "HTML 요소에 대한 기본 Markdown 문법과 포매팅을 보여주는 예시 기사입니다."
 tags: ["마크다운", "css", "html", "예시"]
+coverAlt: "Photo by Lorem Picsum from https://picsum.photos"
 ---
 
 이 기사는 Congo에서 사용할 수 있는 기본 Markdown 포매팅의 예시를 제공하며, 몇 가지 기본 HTML 요소들이 어떻게 장식되는지도 보여줍니다.

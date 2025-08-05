@@ -5,6 +5,7 @@ draft: true
 description: "Congo에서 Chart.js 사용 가이드"
 summary: "Congo는 강력한 차트와 데이터 시각화를 위해 Chart.js를 포함합니다."
 tags: ["차트", "예시", "그래프", "숏코드"]
+coverAlt: "Photo by Lorem Picsum from https://picsum.photos"
 ---
 
 Congo는 `chart` 숏코드를 사용하여 Chart.js를 지원합니다. 숏코드 안에 차트 마크업을 간단히 감싸면 됩니다. Congo는 설정된 `colorScheme` 매개변수에 맞춰 차트 테마를 자동으로 적용하지만, 일반적인 Chart.js 문법을 사용하여 색상을 사용자 정의할 수 있습니다.
