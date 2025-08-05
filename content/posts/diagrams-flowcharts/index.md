@@ -5,6 +5,7 @@ draft: true
 description: "Congo에서 Mermaid 사용 가이드"
 summary: "Mermaid를 사용하여 기사에 다이어그램과 플로우차트를 쉽게 추가할 수 있습니다."
 tags: ["mermaid", "예시", "다이어그램", "숏코드"]
+coverAlt: "Photo by Lorem Picsum from https://picsum.photos"
 ---
 
 Congo에서는 `mermaid` 숏코드를 사용하여 Mermaid 다이어그램을 지원합니다. 다이어그램 마크업을 숏코드로 간단히 감싸면 됩니다. Congo는 설정된 `colorScheme` 매개변수에 맞춰 Mermaid 다이어그램 테마를 자동으로 적용합니다.

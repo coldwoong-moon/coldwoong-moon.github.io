@@ -8,6 +8,7 @@ showReadingTime: false
 build:
   render: "never"
   list: "local"
+coverAlt: "Photo by Lorem Picsum from https://picsum.photos"
 ---
 
 This page uses the `externalUrl` front matter parameter to link to an article outside of this Hugo website.

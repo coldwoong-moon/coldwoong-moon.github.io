@@ -16,6 +16,7 @@ tags:
 categories:
     - 개발
 lastmod: 2025-08-05T01:36:02.199Z
+coverAlt: "Photo by Lorem Picsum from https://picsum.photos"
 ---
 
 > [MS .NET 8.0](https://learn.microsoft.com/ko-kr/dotnet/standard/serialization/binaryformatter-security-guide)에서의 BinaryFormatter 제거 권고사항
