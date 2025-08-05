@@ -23,7 +23,7 @@ robots = "index, follow"
 fingerprintAlgorithm = "sha256"
 
 [header]
-  layout = "hamburger" # valid options: basic, hamburger, hybrid, custom
+  layout = "hybrid" # valid options: basic, hamburger, hybrid, custom
   logo = "img/logo.svg"
   logoDark = "img/logo-dark.svg"
   showTitle = true

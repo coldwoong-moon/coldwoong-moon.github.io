@@ -20,7 +20,12 @@
         >{{ i18n "nav.skip_to_main" }}</a
       >
     </div>
-    {{ partial "header/hamburger.html" . }}
+    {{ $header := print "header/" (.Site.Params.header.layout | default "basic") ".html" }}
+    {{ if templates.Exists (print "partials/" $header) }}
+      {{ partial $header . }}
+    {{ else }}
+      {{ partial "header/basic.html" . }}
+    {{ end }}
     <div class="relative flex grow flex-col">
       <main id="main-content" class="grow">
         {{ block "main" . }}{{ end }}

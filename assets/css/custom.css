@@ -54,6 +54,13 @@ body {
   color: rgb(226, 232, 240);
 }
 
+/* ToC 컨테이너 스크롤 제거 */
+.toc {
+  overflow: visible !important;
+  overflow-y: visible !important;
+  max-height: none !important;
+}
+
 /* ToC 스타일 */
 .toc a {
   word-break: keep-all;
@@ -132,3 +139,4 @@ body {
 .dark .prose h4.heading-active {
   color: rgb(147, 197, 253) !important;
 }
+

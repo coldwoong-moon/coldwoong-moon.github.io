@@ -5,8 +5,11 @@
       {{ partial "logo.html" . }}
     </div>
     {{/* Hamburger menu */}}
+    {{/* Debug menu info */}}
+    <!-- DEBUG: .Site.Menus.main = {{ .Site.Menus.main }} -->
+    <!-- DEBUG: enableSearch = {{ .Site.Params.enableSearch }} -->
     {{ if or .Site.Menus.main (.Site.Params.enableSearch | default false) }}
-      <label id="menu-button" for="menu-controller" class="block sm:hidden">
+      <label id="menu-button" for="menu-controller" class="hidden sm:block">
         <input type="checkbox" id="menu-controller" class="hidden" />
         <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
           {{ partial "icon.html" "bars" }}
