@@ -16,14 +16,9 @@
   weight = 10
 
 [[main]]
-  name = "Categories"
-  pageRef = "categories"
-  weight = 20
-
-[[main]]
   name = "Tags"
   pageRef = "tags"
-  weight = 30
+  weight = 20
 
 #[[main]]
 #  name = "Users"
@@ -33,7 +28,7 @@
 [[main]]
   name = "GitHub"
   url = "https://github.com/coldwoong-moon"
-  weight = 50
+  weight = 40
   [main.params]
     icon = "github"
     showName = false
