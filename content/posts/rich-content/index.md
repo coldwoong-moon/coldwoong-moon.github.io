@@ -17,11 +17,11 @@ Below is an example using the built-in `youtube` shortcode. It requires only the
 
 {{< youtube ZJthWmvUzzc >}}
 
-## X (formerly Twitter)
+## Twitter
 
-This example uses the `x` shortcode to output a Tweet. It requires two named parameters `user` and `id`.
+This example uses the `twitter` shortcode to output a Tweet. It requires only the ID parameter.
 
-{{< x user="DesignReviewed" id="1085870671291310081" >}}
+{{< twitter user="DesignReviewed" id="1085870671291310081" >}}
 
 ## Instagram
 
