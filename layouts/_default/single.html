@@ -35,8 +35,8 @@
     </header>
     <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
       {{ if and (.Params.showTableOfContents | default (.Site.Params.article.showTableOfContents | default false)) (in .TableOfContents "<ul") }}
-        <div class="order-first px-0 lg:order-last lg:ps-8">
-          <div class="toc pe-5 print:hidden">
+        <div class="order-first px-0 lg:order-last lg:max-w-xs lg:ps-8">
+          <div class="toc pe-5 lg:sticky lg:top-24 print:hidden">
             {{ partial "toc.html" . }}
           </div>
         </div>

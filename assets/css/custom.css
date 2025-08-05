@@ -54,11 +54,21 @@ body {
   color: rgb(226, 232, 240);
 }
 
-/* ToC 컨테이너 스크롤 제거 */
-.toc {
-  overflow: visible !important;
-  overflow-y: visible !important;
-  max-height: none !important;
+/* ToC 컨테이너 스크롤 제거 - 모바일에서만 적용 */
+@media (max-width: 1023px) {
+  .toc {
+    overflow: visible !important;
+    overflow-y: visible !important;
+    max-height: none !important;
+  }
+}
+
+/* 데스크톱에서 ToC sticky positioning 허용 */
+@media (min-width: 1024px) {
+  .toc {
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
+  }
 }
 
 /* ToC 스타일 */
