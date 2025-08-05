@@ -1,6 +1,3 @@
-/* 모바일 최적화 CSS import */
-@import url('mobile-optimization.css');
-
 /* IBM Plex Sans KR 폰트 로드 */
 @font-face {
   font-family: 'IBM Plex Sans KR';
@@ -35,54 +32,11 @@
 }
 
 /* 기본 폰트 설정 - IBM Plex Sans KR */
-body, 
-h1, h2, h3, h4, h5, h6,
-p, div, a, button, input, select, textarea,
-.toc, .toc a {
+body {
   font-family: "IBM Plex Sans KR", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
-/* span은 코드가 아닌 경우에만 기본 폰트 적용 */
-span:not(code span):not(pre span) {
-  font-family: "IBM Plex Sans KR", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-}
-
-/* 코드 폰트는 JetBrains Mono 사용 - 높은 특정성 */
-pre,
-pre *,
-code,
-code *,
-kbd,
-kbd *,
-samp,
-samp *,
-.prose pre,
-.prose pre *,
-.prose code,
-.prose code *,
-.highlight,
-.highlight *,
-.chroma,
-.chroma * {
-  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace !important;
-}
-
-/* IBM Plex Sans KR 폰트 최적화 */
-.prose {
-  font-weight: 400;
-  line-height: 1.7;
-  letter-spacing: -0.003em;
-}
-
-.prose p {
-  font-weight: 400;
-  letter-spacing: -0.002em;
-}
-
-.prose strong {
-  font-weight: 700;
-}
-
+/* 헤더 스타일 강화 */
 .prose h1,
 .prose h2,
 .prose h3,
@@ -90,25 +44,73 @@ samp *,
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.3;
+  color: rgb(15, 23, 42);
 }
 
-/* 한글 최적화 */
-.prose p:lang(ko),
-.prose li:lang(ko) {
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4 {
+  color: rgb(226, 232, 240);
+}
+
+/* ToC 스타일 */
+.toc a {
   word-break: keep-all;
   overflow-wrap: break-word;
+  display: block;
+  padding: 0.25rem 0.5rem;
+  margin: 0.125rem 0;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+  position: relative;
 }
 
-/* 본문 헤더 하이라이트 스타일 - 심플 */
+/* ToC 호버 효과 */
+.toc a:hover {
+  background: rgba(59, 130, 246, 0.05);
+  color: rgb(59, 130, 246);
+  padding-left: 0.75rem;
+}
+
+.dark .toc a:hover {
+  background: rgba(96, 165, 250, 0.08);
+  color: rgb(96, 165, 250);
+}
+
+/* ToC 현재 섹션 하이라이트 - 본문과 동일한 스타일 */
+.toc a.toc-active {
+  background: rgba(59, 130, 246, 0.05);
+  border-left: 3px solid rgb(59, 130, 246);
+  padding-left: 0.75rem;
+  color: rgb(30, 64, 175) !important;
+  font-weight: 600;
+}
+
+.dark .toc a.toc-active {
+  background: rgba(96, 165, 250, 0.08);
+  border-left-color: rgb(96, 165, 250);
+  color: rgb(147, 197, 253) !important;
+}
+
+/* 현재 보고 있는 헤더 하이라이트 */
+.prose h2,
+.prose h3,
+.prose h4 {
+  position: relative;
+  padding-left: 0;
+  margin-left: 0;
+  transition: padding-left 0.2s ease;
+}
+
 .prose h2.heading-active,
 .prose h3.heading-active,
 .prose h4.heading-active {
-  position: relative;
   background: rgba(59, 130, 246, 0.05);
   border-left: 3px solid rgb(59, 130, 246);
   padding-left: 1rem;
-  margin-left: -1rem;
-  transition: all 0.2s ease;
+  margin-left: -3px;
+  transition: padding-left 0.2s ease, background 0.2s ease, margin-left 0.2s ease;
 }
 
 .dark .prose h2.heading-active,
@@ -118,7 +120,7 @@ samp *,
   border-left-color: rgb(96, 165, 250);
 }
 
-/* 헤더 텍스트 강조 - 심플 */
+/* 활성 헤더 텍스트 색상 */
 .prose h2.heading-active,
 .prose h3.heading-active,
 .prose h4.heading-active {
@@ -129,391 +131,4 @@ samp *,
 .dark .prose h3.heading-active,
 .dark .prose h4.heading-active {
   color: rgb(147, 197, 253) !important;
-}
-
-/* 본문과 ToC 레이아웃 - 메뉴바와 정렬 */
-/* article 영역 전체 너비 사용 */
-article {
-  width: 100%;
-}
-
-/* 본문 섹션이 전체 너비 사용하도록 */
-article > section.flex {
-  width: 100%;
-  max-width: 100%;
-}
-
-/* 본문 너비를 플렉스로 자동 조정 */
-.prose {
-  max-width: none !important;
-  width: 100%;
-}
-
-.min-w-0.max-w-prose {
-  max-width: none !important;
-  width: 100%;
-}
-
-@media (min-width: 1024px) {
-  /* ToC와 본문 레이아웃 */
-  section.flex.lg\:flex-row {
-    display: flex;
-    gap: 3rem;
-    width: 100%;
-  }
-  
-  /* ToC 컨테이너 고정 너비 */
-  .order-first.lg\:order-last {
-    width: 18rem !important;
-    max-width: 18rem !important;
-    flex-shrink: 0;
-    flex-grow: 0;
-  }
-  
-  /* 본문 영역이 나머지 공간 모두 사용 */
-  .min-h-0.min-w-0.grow {
-    flex: 1 1 auto;
-    max-width: calc(100% - 21rem); /* ToC 너비 + gap 고려 */
-    width: 100%;
-  }
-  
-  /* ToC sticky 유지 */
-  .toc.lg\:sticky {
-    width: 100%;
-  }
-}
-
-@media (min-width: 1280px) {
-  /* 큰 화면에서 ToC 조금 더 넓게 */
-  .order-first.lg\:order-last {
-    width: 20rem !important;
-    max-width: 20rem !important;
-  }
-  
-  .min-h-0.min-w-0.grow {
-    max-width: calc(100% - 23rem);
-  }
-}
-
-/* ToC 스타일 */
-.toc {
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-
-/* 본문 내 텍스트 가독성을 위한 최대 너비 제한 */
-.prose p,
-.prose ul,
-.prose ol,
-.prose blockquote {
-  max-width: 75ch;
-}
-
-/* 코드 블록과 테이블은 전체 너비 사용 */
-.prose pre,
-.prose table {
-  max-width: 100%;
-}
-
-/* 기본 스크롤 설정 */
-html {
-  scroll-behavior: smooth; /* ToC 클릭 시에만 부드러운 스크롤 */
-  scroll-padding-top: 5rem; /* 헤더 높이 고려 */
-}
-
-/* 스크롤바 스타일링 */
-::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(156, 163, 175, 0.1);
-  border-radius: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(156, 163, 175, 0.3);
-  border-radius: 6px;
-  border: 2px solid transparent;
-  background-clip: content-box;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(156, 163, 175, 0.5);
-  background-clip: content-box;
-}
-
-/* 다크모드 스크롤바 */
-.dark ::-webkit-scrollbar-track {
-  background: rgba(55, 65, 81, 0.2);
-}
-
-.dark ::-webkit-scrollbar-thumb {
-  background: rgba(75, 85, 99, 0.4);
-  background-clip: content-box;
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: rgba(107, 114, 128, 0.5);
-  background-clip: content-box;
-}
-
-/* Firefox 스크롤바 */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(156, 163, 175, 0.3) rgba(156, 163, 175, 0.1);
-}
-
-.dark * {
-  scrollbar-color: rgba(75, 85, 99, 0.4) rgba(55, 65, 81, 0.2);
-}
-
-/* ToC 하이라이트 스타일 - 미니멀 */
-.toc a {
-  display: block;
-  padding: 0.25rem 0.25rem;
-  margin: 0.125rem 0;
-  transition: all 0.15s ease;
-  color: rgb(107, 114, 128);
-  position: relative;
-  font-size: 0.875rem;
-}
-
-.dark .toc a {
-  color: rgb(156, 163, 175);
-}
-
-/* ToC 호버 효과 */
-.toc a:hover {
-  color: rgb(59, 130, 246) !important;
-  padding-left: 0.5rem;
-}
-
-.dark .toc a:hover {
-  color: rgb(96, 165, 250) !important;
-}
-
-/* 현재 보고 있는 섹션 하이라이트 */
-.toc a.toc-active {
-  font-weight: 600;
-  color: rgb(29, 78, 216) !important;
-  border-left: 2px solid rgb(59, 130, 246);
-  padding-left: 0.5rem;
-  background: rgba(59, 130, 246, 0.05);
-}
-
-.dark .toc a.toc-active {
-  color: rgb(147, 197, 253) !important;
-  border-left-color: rgb(96, 165, 250);
-  background: rgba(96, 165, 250, 0.08);
-}
-
-/* 일반 헤더 스타일 강화 (활성화되지 않은 상태) */
-.prose h2,
-.prose h3,
-.prose h4 {
-  color: rgb(15, 23, 42) !important;
-  font-weight: 700 !important;
-}
-
-.dark .prose h2,
-.dark .prose h3,
-.dark .prose h4 {
-  color: rgb(226, 232, 240) !important;
-}
-
-/* 프로필 이미지 정방형 원형 처리 */
-.rounded-full {
-  width: 9rem !important;
-  height: 9rem !important;
-  object-fit: cover !important;
-  object-position: center !important;
-}
-
-/* 모바일 최적화 */
-@media (max-width: 1023px) {
-  /* 전체 컨테이너 너비 제한 */
-  body {
-    overflow-x: hidden;
-  }
-  
-  /* 메인 컨테이너 가로스크롤 방지 */
-  main {
-    width: 100%;
-    max-width: 100vw;
-    overflow-x: hidden;
-  }
-  
-  /* 아티클 컨테이너 너비 제한 */
-  article {
-    width: 100%;
-    max-width: 100vw;
-    overflow-x: hidden;
-    padding: 0 1rem;
-    box-sizing: border-box;
-  }
-  
-  /* 본문 영역 너비 제한 */
-  .prose {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-  
-  /* 코드 블록 가로스크롤 최적화 */
-  .prose pre {
-    width: 100%;
-    max-width: calc(100vw - 2rem);
-    overflow-x: auto;
-    white-space: pre;
-    word-wrap: normal;
-  }
-  
-  /* 테이블 가로스크롤 처리 */
-  .prose table {
-    width: 100%;
-    max-width: calc(100vw - 2rem);
-    overflow-x: auto;
-    display: block;
-    white-space: nowrap;
-  }
-  
-  /* 목차(ToC) 모바일 최적화 */
-  .toc {
-    max-height: 50vh !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    width: 100% !important;
-    margin-bottom: 2rem !important;
-    padding: 1rem !important;
-    background: rgba(0, 0, 0, 0.02) !important;
-    border-radius: 0.5rem !important;
-    border: 1px solid rgba(0, 0, 0, 0.05) !important;
-  }
-  
-  .dark .toc {
-    background: rgba(255, 255, 255, 0.03) !important;
-    border-color: rgba(255, 255, 255, 0.1) !important;
-  }
-  
-  /* 목차 제목 */
-  .toc > div:first-child {
-    margin-bottom: 0.5rem !important;
-    font-weight: 600 !important;
-    color: rgb(75, 85, 99) !important;
-  }
-  
-  .dark .toc > div:first-child {
-    color: rgb(156, 163, 175) !important;
-  }
-  
-  /* 목차 리스트 스타일 */
-  .toc ul {
-    list-style: none !important;
-    padding-left: 0 !important;
-    margin: 0 !important;
-  }
-  
-  .toc ul ul {
-    padding-left: 1rem !important;
-  }
-  
-  .toc li {
-    margin: 0.25rem 0 !important;
-  }
-  
-  /* 목차 링크 모바일 최적화 */
-  .toc a {
-    display: block !important;
-    padding: 0.5rem 0.75rem !important;
-    margin: 0.125rem 0 !important;
-    border-radius: 0.25rem !important;
-    font-size: 0.875rem !important;
-    line-height: 1.4 !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    transition: all 0.2s ease !important;
-  }
-  
-  /* 목차 호버/터치 효과 */
-  .toc a:hover,
-  .toc a:active {
-    background: rgba(59, 130, 246, 0.1) !important;
-    color: rgb(59, 130, 246) !important;
-    padding-left: 0.75rem !important;
-  }
-  
-  .dark .toc a:hover,
-  .dark .toc a:active {
-    background: rgba(96, 165, 250, 0.15) !important;
-    color: rgb(96, 165, 250) !important;
-  }
-  
-  /* 현재 활성 목차 항목 */
-  .toc a.toc-active {
-    background: rgba(59, 130, 246, 0.15) !important;
-    color: rgb(29, 78, 216) !important;
-    font-weight: 600 !important;
-    border-left: none !important;
-  }
-  
-  .dark .toc a.toc-active {
-    background: rgba(96, 165, 250, 0.2) !important;
-    color: rgb(147, 197, 253) !important;
-  }
-  
-  /* 이미지 가로스크롤 방지 */
-  .prose img {
-    max-width: 100% !important;
-    height: auto !important;
-    width: auto !important;
-  }
-  
-  /* 긴 URL이나 텍스트 줄바꿈 처리 */
-  .prose p,
-  .prose li {
-    word-break: break-word !important;
-    overflow-wrap: break-word !important;
-  }
-  
-  /* 인라인 코드 줄바꿈 처리 */
-  .prose code {
-    word-break: break-all !important;
-    white-space: pre-wrap !important;
-  }
-  
-  /* 헤더와 패딩 조정 */
-  .prose h1,
-  .prose h2,
-  .prose h3,
-  .prose h4,
-  .prose h5,
-  .prose h6 {
-    word-break: keep-all !important;
-    overflow-wrap: break-word !important;
-  }
-}
-
-/* 작은 모바일 화면 (320px-480px) 추가 최적화 */
-@media (max-width: 480px) {
-  article {
-    padding: 0 0.75rem;
-  }
-  
-  .prose pre {
-    max-width: calc(100vw - 1.5rem);
-    font-size: 0.8rem;
-  }
-  
-  .toc {
-    max-height: 40vh !important;
-    padding: 0.75rem !important;
-  }
-  
-  .toc a {
-    font-size: 0.8rem !important;
-    padding: 0.4rem 0.6rem !important;
-  }
 }
