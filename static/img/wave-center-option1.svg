@@ -1,0 +1,20 @@
+<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <!-- Three centered wave lines -->
+  <path d="M5 20 Q10 15, 15 20 Q20 25, 25 20 Q30 15, 35 20" 
+        stroke="#0369a1" 
+        stroke-width="3" 
+        fill="none" 
+        stroke-linecap="round"/>
+  
+  <path d="M5 20 Q10 25, 15 20 Q20 15, 25 20 Q30 25, 35 20" 
+        stroke="#0891b2" 
+        stroke-width="3" 
+        fill="none" 
+        stroke-linecap="round"/>
+  
+  <path d="M5 20 Q10 20, 15 20 Q20 20, 25 20 Q30 20, 35 20" 
+        stroke="#06b6d4" 
+        stroke-width="3" 
+        fill="none" 
+        stroke-linecap="round"/>
+</svg>

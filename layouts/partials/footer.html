@@ -101,7 +101,7 @@
         </p>
       {{ end }}
     </div>
-    <div class="flex flex-row items-center">
+    <div class="flex flex-row items-center space-x-4">
       {{/* Locale switcher */}}
       {{ if and (.IsTranslated) (eq ($.Scratch.Get "localeCount") 0) }}
         <div>

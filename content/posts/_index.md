@@ -1,13 +1,18 @@
 ---
-title: Posts
-date: 2024-09-07
-draft: false
-created: 2024-09-08T00:46:04+09:00
-modified: 2024-09-08T00:46:54+09:00
+title: "Content Samples"
+description: "See what's possible with Congo."
+
+cascade:
+  showEdit: false
+  showSummary: true
 ---
 
-나누고 싶은 정보와 이야기를 담았습니다.
+{{< lead >}}
+Congo brings your content to life. :heart_eyes:
+{{< /lead >}}
 
-관심있는 게시물을 확인해보세요!
+This section contains some demo pages that show how Congo renders different types of content. You can also see an example [taxonomy listing]({{< ref "tags" >}}) page.
+
+_**Sidenote:** This page is just a standard Congo article listing and Hugo has been configured to generate a `samples` content type and display article summaries._
 
 ---

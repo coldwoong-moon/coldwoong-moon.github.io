@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favicon Generator</title>
+</head>
+<body>
+    <canvas id="canvas16" width="16" height="16" style="border:1px solid #ccc; margin: 10px;"></canvas>
+    <canvas id="canvas32" width="32" height="32" style="border:1px solid #ccc; margin: 10px;"></canvas>
+    <canvas id="canvas192" width="192" height="192" style="border:1px solid #ccc; margin: 10px;"></canvas>
+    <canvas id="canvas512" width="512" height="512" style="border:1px solid #ccc; margin: 10px;"></canvas>
+    
+    <div>
+        <button onclick="downloadFavicon(16)">Download 16x16</button>
+        <button onclick="downloadFavicon(32)">Download 32x32</button>
+        <button onclick="downloadFavicon(192)">Download 192x192</button>
+        <button onclick="downloadFavicon(512)">Download 512x512</button>
+    </div>
+
+    <script>
+        function drawFavicon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            
+            // Background
+            ctx.fillStyle = '#f8fafc';
+            ctx.fillRect(0, 0, size, size);
+            
+            // Wave gradient
+            const waveGradient = ctx.createLinearGradient(0, 0, size, size);
+            waveGradient.addColorStop(0, '#3b82f6');
+            waveGradient.addColorStop(1, '#1e40af');
+            
+            // AI gradient
+            const aiGradient = ctx.createLinearGradient(0, 0, size, size);
+            aiGradient.addColorStop(0, '#06b6d4');
+            aiGradient.addColorStop(1, '#0891b2');
+            
+            const scale = size / 32;
+            
+            // Draw waves
+            ctx.strokeStyle = waveGradient;
+            ctx.lineWidth = 2 * scale;
+            ctx.globalAlpha = 1;
+            
+            // First wave
+            ctx.beginPath();
+            ctx.moveTo(4 * scale, 14 * scale);
+            ctx.quadraticCurveTo(8 * scale, 10 * scale, 12 * scale, 14 * scale);
+            ctx.quadraticCurveTo(16 * scale, 18 * scale, 20 * scale, 14 * scale);
+            ctx.quadraticCurveTo(24 * scale, 10 * scale, 28 * scale, 14 * scale);
+            ctx.stroke();
+            
+            // Second wave
+            ctx.globalAlpha = 0.7;
+            ctx.beginPath();
+            ctx.moveTo(4 * scale, 18 * scale);
+            ctx.quadraticCurveTo(8 * scale, 14 * scale, 12 * scale, 18 * scale);
+            ctx.quadraticCurveTo(16 * scale, 22 * scale, 20 * scale, 18 * scale);
+            ctx.quadraticCurveTo(24 * scale, 14 * scale, 28 * scale, 18 * scale);
+            ctx.stroke();
+            
+            // AI nodes
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = aiGradient;
+            
+            // Node positions scaled
+            const nodes = [
+                [10 * scale, 8 * scale, 1.5 * scale],
+                [16 * scale, 6 * scale, 1.2 * scale],
+                [22 * scale, 8 * scale, 1.5 * scale]
+            ];
+            
+            nodes.forEach(([x, y, r]) => {
+                ctx.beginPath();
+                ctx.arc(x, y, r, 0, 2 * Math.PI);
+                ctx.fill();
+            });
+            
+            // Connecting lines
+            ctx.strokeStyle = aiGradient;
+            ctx.lineWidth = 1 * scale;
+            ctx.globalAlpha = 0.6;
+            
+            ctx.beginPath();
+            ctx.moveTo(10 * scale, 8 * scale);
+            ctx.lineTo(16 * scale, 6 * scale);
+            ctx.lineTo(22 * scale, 8 * scale);
+            ctx.stroke();
+            
+            // Forward arrow
+            ctx.globalAlpha = 0.8;
+            ctx.fillStyle = aiGradient;
+            ctx.beginPath();
+            ctx.moveTo(14 * scale, 24 * scale);
+            ctx.lineTo(18 * scale, 24 * scale);
+            ctx.lineTo(20 * scale, 22 * scale);
+            ctx.lineTo(18 * scale, 20 * scale);
+            ctx.lineTo(14 * scale, 20 * scale);
+            ctx.lineTo(16 * scale, 22 * scale);
+            ctx.closePath();
+            ctx.fill();
+        }
+        
+        function downloadFavicon(size) {
+            const canvas = document.getElementById(`canvas${size}`);
+            const link = document.createElement('a');
+            link.download = `favicon-${size}x${size}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        // Draw all sizes
+        [16, 32, 192, 512].forEach(size => {
+            const canvas = document.getElementById(`canvas${size}`);
+            drawFavicon(canvas, size);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <!-- Three bold minimalist waves -->
+  <path d="M3 17 Q10 12, 17 17 Q20 20, 23 17 Q30 12, 37 17" 
+        stroke="#0f172a" 
+        stroke-width="4" 
+        fill="none" 
+        stroke-linecap="round"/>
+  
+  <path d="M3 20 Q10 17, 17 20 Q20 23, 23 20 Q30 17, 37 20" 
+        stroke="#0f172a" 
+        stroke-width="4" 
+        fill="none" 
+        stroke-linecap="round"/>
+  
+  <path d="M3 23 Q10 20, 17 23 Q20 26, 23 23 Q30 20, 37 23" 
+        stroke="#0f172a" 
+        stroke-width="4" 
+        fill="none" 
+        stroke-linecap="round"/>
+</svg>

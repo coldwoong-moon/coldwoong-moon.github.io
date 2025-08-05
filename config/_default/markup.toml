@@ -7,7 +7,9 @@
 
 [highlight]
   noClasses = false
+  style = "github"
+  lineNos = false
 
 [tableOfContents]
   startLevel = 2
-  endLevel = 3
+  endLevel = 4

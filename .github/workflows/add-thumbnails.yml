@@ -1,0 +1,190 @@
+name: Add Missing Thumbnails
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'content/posts/**/index.md'
+  workflow_dispatch:  # Allow manual trigger
+  schedule:
+    - cron: '0 0 * * 0'  # Run weekly on Sunday
+
+jobs:
+  add-thumbnails:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install requests pillow
+
+    - name: Find posts without thumbnails and add them
+      run: |
+        python3 << 'EOF'
+        import os
+        import requests
+        import random
+        from pathlib import Path
+        import json
+
+        # Unsplash API configuration
+        UNSPLASH_ACCESS_KEY = "${{ secrets.UNSPLASH_ACCESS_KEY }}"
+        if not UNSPLASH_ACCESS_KEY:
+            print("⚠️  Warning: UNSPLASH_ACCESS_KEY not set. Using fallback method.")
+            # Use Lorem Picsum for random images if Unsplash key not available
+            USE_LOREM_PICSUM = True
+        else:
+            USE_LOREM_PICSUM = False
+
+        # Categories for random selection
+        CATEGORIES = [
+            "nature landscape", "abstract background", "minimal wallpaper", 
+            "technology", "architecture", "pattern texture", "geometric",
+            "gradient", "mountains", "ocean waves", "forest", "city skyline"
+        ]
+
+        def download_image(url, filepath):
+            """Download image from URL"""
+            response = requests.get(url, stream=True)
+            response.raise_for_status()
+            
+            with open(filepath, 'wb') as f:
+                for chunk in response.iter_content(chunk_size=8192):
+                    f.write(chunk)
+            return True
+
+        def get_random_unsplash_image(query):
+            """Get random image from Unsplash"""
+            url = "https://api.unsplash.com/photos/random"
+            params = {
+                "query": query,
+                "orientation": "landscape",
+                "client_id": UNSPLASH_ACCESS_KEY
+            }
+            
+            response = requests.get(url, params=params)
+            if response.status_code == 200:
+                data = response.json()
+                return data["urls"]["regular"], data["user"]["name"], data["links"]["html"]
+            return None, None, None
+
+        def get_lorem_picsum_image():
+            """Get random image from Lorem Picsum"""
+            # Get random image with specific size
+            url = "https://picsum.photos/1200/800"
+            return url, "Lorem Picsum", "https://picsum.photos"
+
+        # Find all post directories
+        posts_dir = Path("content/posts")
+        posts_updated = []
+
+        for post_dir in posts_dir.iterdir():
+            if not post_dir.is_dir():
+                continue
+            
+            # Check if thumbnail already exists
+            has_thumbnail = any(
+                f.name.startswith(("feature", "thumb")) and f.suffix in [".jpg", ".png", ".webp"]
+                for f in post_dir.iterdir()
+            )
+            
+            if has_thumbnail:
+                print(f"✓ {post_dir.name} already has a thumbnail")
+                continue
+            
+            print(f"📸 Adding thumbnail for: {post_dir.name}")
+            
+            # Choose random category
+            category = random.choice(CATEGORIES)
+            
+            # Get image
+            if USE_LOREM_PICSUM:
+                image_url, photographer, source_url = get_lorem_picsum_image()
+            else:
+                image_url, photographer, source_url = get_random_unsplash_image(category)
+                
+                if not image_url:
+                    # Fallback to Lorem Picsum
+                    image_url, photographer, source_url = get_lorem_picsum_image()
+            
+            if image_url:
+                # Download image
+                image_path = post_dir / f"thumb-{category.replace(' ', '-')}.jpg"
+                
+                try:
+                    download_image(image_url, image_path)
+                    posts_updated.append(post_dir.name)
+                    print(f"  ✅ Downloaded: {image_path.name}")
+                    print(f"  📷 Credit: {photographer}")
+                    
+                    # Update index.md with coverAlt if needed
+                    index_path = post_dir / "index.md"
+                    if index_path.exists():
+                        with open(index_path, 'r', encoding='utf-8') as f:
+                            content = f.read()
+                        
+                        # Check if coverAlt exists
+                        if 'coverAlt:' not in content:
+                            # Add coverAlt after the front matter
+                            lines = content.split('\n')
+                            fm_end = -1
+                            fm_count = 0
+                            
+                            for i, line in enumerate(lines):
+                                if line.strip() == '---':
+                                    fm_count += 1
+                                    if fm_count == 2:
+                                        fm_end = i
+                                        break
+                            
+                            if fm_end > 0:
+                                # Insert before the closing ---
+                                lines.insert(fm_end, f'coverAlt: "Photo by {photographer} from {source_url}"')
+                                
+                                with open(index_path, 'w', encoding='utf-8') as f:
+                                    f.write('\n'.join(lines))
+                                print(f"  ✅ Updated coverAlt in index.md")
+                    
+                except Exception as e:
+                    print(f"  ❌ Error downloading image: {e}")
+
+        # Summary
+        print(f"\n📊 Summary: Added thumbnails to {len(posts_updated)} posts")
+        if posts_updated:
+            print("Posts updated:", ", ".join(posts_updated))
+            
+            # Create commit message
+            with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+                f.write(f"posts_updated={len(posts_updated)}\n")
+                f.write(f"should_commit=true\n")
+        else:
+            with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+                f.write(f"should_commit=false\n")
+        EOF
+
+    - name: Commit changes
+      if: steps.add-thumbnails.outputs.should_commit == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add content/posts/*/thumb-*.jpg
+        git add content/posts/*/index.md
+        git commit -m "🖼️ Add missing thumbnails to ${{ steps.add-thumbnails.outputs.posts_updated }} posts"
+
+    - name: Push changes
+      if: steps.add-thumbnails.outputs.should_commit == 'true'
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}

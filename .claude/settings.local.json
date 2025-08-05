@@ -37,7 +37,15 @@
       "WebFetch(domain:pixabay.com)",
       "WebFetch(domain:unsplash.com)",
       "WebFetch(domain:localhost)",
-      "Bash(-print)"
+      "Bash(-print)",
+      "Bash(unzip:*)",
+      "Bash(convert:*)",
+      "Bash(magick:*)",
+      "WebFetch(domain:file.miricanvas.com)",
+      "Bash(python3:*)",
+      "Bash(pip3 install:*)",
+      "Bash(brew install:*)",
+      "Bash(git fetch:*)"
     ],
     "deny": []
   }

@@ -1,0 +1,9 @@
+<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <!-- Rounded square with wave -->
+  <rect x="2" y="2" width="36" height="36" rx="8" fill="#0369a1"/>
+  <path d="M8 20 Q14 12, 20 20 Q26 28, 32 20" 
+        stroke="#ffffff" 
+        stroke-width="5" 
+        fill="none" 
+        stroke-linecap="round"/>
+</svg>

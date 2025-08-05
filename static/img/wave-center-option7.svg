@@ -1,0 +1,20 @@
+<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <!-- Three dynamic waves with varying amplitudes -->
+  <path d="M2 20 Q8 12, 14 20 Q20 28, 26 20 Q32 12, 38 20" 
+        stroke="#2563eb" 
+        stroke-width="3" 
+        fill="none" 
+        stroke-linecap="round"/>
+  
+  <path d="M2 20 Q8 16, 14 20 Q20 24, 26 20 Q32 16, 38 20" 
+        stroke="#1e40af" 
+        stroke-width="3.5" 
+        fill="none" 
+        stroke-linecap="round"/>
+  
+  <path d="M2 20 Q8 18, 14 20 Q20 22, 26 20 Q32 18, 38 20" 
+        stroke="#1e3a8a" 
+        stroke-width="4" 
+        fill="none" 
+        stroke-linecap="round"/>
+</svg>

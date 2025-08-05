@@ -15,7 +15,7 @@ tags:
     - Migration
 categories:
     - 개발
-lastmod: 2025-08-05T00:43:35.089Z
+lastmod: 2025-08-05T01:36:02.199Z
 ---
 
 > [MS .NET 8.0](https://learn.microsoft.com/ko-kr/dotnet/standard/serialization/binaryformatter-security-guide)에서의 BinaryFormatter 제거 권고사항
@@ -327,7 +327,7 @@ catch (SerializationException ex)
 
 ## 결론
 
-BinaryFormatter는 .NET에서 오랜 기간 사용되어 왔으나, 구조적 유연성 부족과 보안 취약성, 외부 라이브러리 의존성 등으로 인해 더 이상 권장되지 않습니다. 실제로 다양한 프로젝트에서 발생한 문제들은 클래스 구조 변경, 어셈블리 이름 변경, 외부 라이브러리 업데이트 등으로 인해 기존 이진 파일을 사용할 수 없게 만드는 주요 원인이 되었습니다. 
+BinaryFormatter는 .NET에서 오랜 기간 사용되어 왔으나, 구조적 유연성 부족과 보안 취약성, 외부 라이브러리 의존성 등으로 인해 더 이상 권장되지 않습니다. 실제로 다양한 프로젝트에서 발생한 문제들은 클래스 구조 변경, 어셈블리 이름 변경, 외부 라이브러리 업데이트 등으로 인해 기존 이진 파일을 사용할 수 없게 만드는 주요 원인이 되었습니다.
 
 앞으로는 JSON, XML 등 텍스트 기반 직렬화 포맷을 적극적으로 도입하고, 데이터 마이그레이션 및 예외 처리 로직을 강화하는 것이 장기적으로 유지보수성과 안정성을 높이는 길입니다.
 
