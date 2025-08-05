@@ -1,10 +1,11 @@
 ---
-title: "콘텐츠 예시"
-description: "Congo 테마로 할 수 있는 것들을 확인해보세요."
-
+title: 콘텐츠 예시
+description: Congo 테마로 할 수 있는 것들을 확인해보세요.
 cascade:
   showEdit: false
   showSummary: true
+draft: true
+lastmod: 2025-08-05T05:43:01.371Z
 ---
 
 {{< lead >}}
