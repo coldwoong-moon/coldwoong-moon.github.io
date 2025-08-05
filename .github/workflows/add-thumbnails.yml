@@ -65,24 +65,28 @@ jobs:
             return True
 
         def get_random_unsplash_image(query):
-            """Get random image from Unsplash"""
+            """Get random image from Unsplash with 4:3 aspect ratio"""
             url = "https://api.unsplash.com/photos/random"
             params = {
                 "query": query,
                 "orientation": "landscape",
-                "client_id": UNSPLASH_ACCESS_KEY
+                "client_id": UNSPLASH_ACCESS_KEY,
+                "w": 1200,
+                "h": 900  # 4:3 aspect ratio
             }
             
             response = requests.get(url, params=params)
             if response.status_code == 200:
                 data = response.json()
-                return data["urls"]["regular"], data["user"]["name"], data["links"]["html"]
+                # Get URL with specific dimensions for 4:3 ratio
+                image_url = data["urls"]["raw"] + "&w=1200&h=900&fit=crop"
+                return image_url, data["user"]["name"], data["links"]["html"]
             return None, None, None
 
         def get_lorem_picsum_image():
-            """Get random image from Lorem Picsum"""
-            # Get random image with specific size
-            url = "https://picsum.photos/1200/800"
+            """Get random image from Lorem Picsum with 4:3 aspect ratio"""
+            # Get random image with 4:3 aspect ratio
+            url = "https://picsum.photos/1200/900"
             return url, "Lorem Picsum", "https://picsum.photos"
 
         # Find all post directories
@@ -93,9 +97,9 @@ jobs:
             if not post_dir.is_dir():
                 continue
             
-            # Check if thumbnail already exists
+            # Check if feature image already exists
             has_thumbnail = any(
-                f.name.startswith(("feature", "thumb")) and f.suffix in [".jpg", ".png", ".webp"]
+                f.name.startswith("feature") and f.suffix in [".jpg", ".png", ".webp"]
                 for f in post_dir.iterdir()
             )
             
@@ -119,8 +123,8 @@ jobs:
                     image_url, photographer, source_url = get_lorem_picsum_image()
             
             if image_url:
-                # Download image
-                image_path = post_dir / f"thumb-{category.replace(' ', '-')}.jpg"
+                # Download image as feature image
+                image_path = post_dir / f"feature-{category.replace(' ', '-')}.jpg"
                 
                 try:
                     download_image(image_url, image_path)
@@ -178,7 +182,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add content/posts/*/thumb-*.jpg
+        git add content/posts/*/feature-*.jpg
         git add content/posts/*/index.md
         git commit -m "🖼️ Add missing thumbnails to ${{ steps.add-thumbnails.outputs.posts_updated }} posts"
 
