@@ -3,7 +3,7 @@
 # https://jpanther.github.io/congo/docs/getting-started/
 
 theme = "congo"
-baseURL = "/"
+baseURL = "https://coldwoong-moon.github.io/"
 languageCode = "ko"
 defaultContentLanguage = "ko"
 
