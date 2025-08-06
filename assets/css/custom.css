@@ -1,3 +1,77 @@
+/* 헤더 고정 스타일 */
+body > header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1000 !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+.dark body > header {
+  background: rgba(15, 23, 42, 0.95) !important;
+}
+
+/* 헤더 내부 nav 요소의 너비와 패딩 조정 */
+body > header nav {
+  max-width: 80rem !important; /* max-w-7xl과 동일 */
+  margin: 0 auto !important;
+  padding-left: 1.5rem !important; /* px-6과 동일 */
+  padding-right: 1.5rem !important;
+}
+
+/* 반응형 패딩 조정 - body와 동일하게 맞춤 */
+@media (min-width: 640px) {
+  body > header nav {
+    padding-left: 3.5rem !important; /* sm:px-14와 동일 */
+    padding-right: 3.5rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  body > header nav {
+    padding-left: 6rem !important; /* md:px-24와 동일 */
+    padding-right: 6rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  body > header nav {
+    padding-left: 8rem !important; /* lg:px-32와 동일 */
+    padding-right: 8rem !important;
+  }
+}
+
+/* 헤더 고정으로 인한 본문 여백 조정 */
+body {
+  padding-top: 4rem !important;
+}
+
+/* 메인 콘텐츠 영역 추가 여백 조정 */
+#main-content {
+  padding-top: 1rem;
+}
+
+/* article 시작 위치 미세 조정 */
+article {
+  margin-top: 0.5rem;
+}
+
+/* 앵커 링크 오프셋 조정 - 헤더 높이만큼 상단 여백 추가 */
+:target::before {
+  content: '';
+  display: block;
+  height: 4rem;
+  margin-top: -4rem;
+}
+
+/* 헤딩 요소들이 클릭될 때 올바른 위치로 스크롤 되도록 조정 */
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  scroll-margin-top: 4rem;
+}
+
 /* IBM Plex Sans KR 폰트 로드 */
 @font-face {
   font-family: 'IBM Plex Sans KR';
@@ -75,7 +149,7 @@ header {
     overflow-y: visible !important;
     max-height: none !important;
     position: sticky !important;
-    top: 6rem !important; /* lg:top-24와 동일한 값 (24 * 0.25rem = 6rem) */
+    top: 8rem !important; /* 헤더 높이 4rem + 기존 여백 4rem = 8rem */
   }
 }
 
@@ -156,5 +230,56 @@ header {
 .dark .prose h3.heading-active,
 .dark .prose h4.heading-active {
   color: rgb(147, 197, 253) !important;
+}
+
+/* 스킵 링크(skip to main) 위치 조정 */
+#the-top {
+  top: 4rem; /* 헤더 높이만큼 아래로 이동 */
+}
+
+/* 상단으로 스크롤 버튼 위치 조정 */
+#to-top {
+  bottom: 1rem; /* 더 명확하게 보이도록 위치 조정 */
+}
+
+/* 모바일 햄버거 메뉴 배경 z-index 조정 */
+#menu-wrapper {
+  z-index: 999 !important; /* 헤더보다 살짝 낮게 설정하여 헤더가 보이도록 */
+}
+
+/* 헤더가 모바일 메뉴보다 위에 오도록 z-index 재조정 */
+body > header {
+  z-index: 1000 !important;
+}
+
+/* 전체적인 레이아웃 일관성을 위한 추가 조정 */
+.relative.flex.grow.flex-col {
+  margin-top: 0; /* 헤더가 fixed이므로 기본 여백 제거 */
+}
+
+/* 홈페이지와 다른 페이지 간 일관성 유지 */
+body.home #main-content {
+  padding-top: 1rem;
+}
+
+/* 반응형에서도 일관된 간격 유지 */
+@media (min-width: 640px) {
+  #main-content {
+    padding-top: 1.25rem; /* 모바일보다 살짝 더 넓은 간격 */
+  }
+  
+  article {
+    margin-top: 0.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  #main-content {
+    padding-top: 1.5rem; /* 데스크톱에서 더 넓은 간격 */
+  }
+  
+  article {
+    margin-top: 1rem;
+  }
 }
 
