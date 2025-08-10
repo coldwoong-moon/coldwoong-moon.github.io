@@ -1,14 +1,17 @@
 {{- define "partials/inline/breadcrumbData" -}}
   {{- $scratchCtx := .scratch -}}
   {{- with .parent }}
-    {{ partial "inline/breadcrumbData" (dict "scratch" $scratchCtx "parent" .Parent) }}
-    {{- $scratchCtx.Add "listItem" (slice (dict 
-      "@type" "ListItem"
-      "position" ($scratchCtx.Get "count")
-      "name" (.Title | humanize | title)
-      "item" .Permalink
-    )) -}}
-    {{- $scratchCtx.Add "count" 1 -}}
+    {{- $title := .Title | humanize | title -}}
+    {{- if and $title (not .IsHome) }}
+      {{ partial "inline/breadcrumbData" (dict "scratch" $scratchCtx "parent" .Parent) }}
+      {{- $scratchCtx.Add "listItem" (slice (dict 
+        "@type" "ListItem"
+        "position" ($scratchCtx.Get "count")
+        "name" $title
+        "item" .Permalink
+      )) -}}
+      {{- $scratchCtx.Add "count" 1 -}}
+    {{- end }}
   {{- end }}
 {{- end -}}
 
