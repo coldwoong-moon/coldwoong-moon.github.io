@@ -1,29 +1,13 @@
 {{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   {{- range .Data.Pages }}
   {{- if and (not .Params.private) (not .Params.draft) }}
   <url>
     <loc>{{ .Permalink | safeURL }}</loc>
     {{- if .Lastmod }}
-    <lastmod>{{ (.Lastmod.Format "2006-01-02T15:04:05-07:00") | safeHTML }}</lastmod>
+    <lastmod>{{ .Lastmod.Format "2006-01-02" }}</lastmod>
     {{- else if not .Date.IsZero }}
-    <lastmod>{{ (.Date.Format "2006-01-02T15:04:05-07:00") | safeHTML }}</lastmod>
-    {{- else }}
-    <lastmod>{{ (now.Format "2006-01-02T15:04:05-07:00") | safeHTML }}</lastmod>
-    {{- end }}
-    {{- if .IsHome }}
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-    {{- else if .IsSection }}
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    {{- else if eq .Section "posts" }}
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    {{- else }}
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>{{ .Date.Format "2006-01-02" }}</lastmod>
     {{- end }}
   </url>
   {{- end }}
