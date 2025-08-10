@@ -1,3 +1,8 @@
 User-agent: *
 Allow: /
+
+# Primary sitemap index - recommended for Google Search Console
+Sitemap: {{ "sitemap_index.xml" | absURL }}
+
+# Individual sitemaps for direct access
 Sitemap: {{ "sitemap.xml" | absURL }}

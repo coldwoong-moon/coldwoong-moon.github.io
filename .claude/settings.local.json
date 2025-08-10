@@ -66,7 +66,10 @@
       "Bash(git rebase:*)",
       "mcp__microsoft-playwright-mcp__browser_resize",
       "mcp__microsoft-playwright-mcp__browser_click",
-      "WebFetch(domain:coldwoong-moon.github.io)"
+      "WebFetch(domain:coldwoong-moon.github.io)",
+      "Bash(git reset:*)",
+      "Bash(xmllint:*)",
+      "WebFetch(domain:developers.google.com)"
     ],
     "deny": []
   }
