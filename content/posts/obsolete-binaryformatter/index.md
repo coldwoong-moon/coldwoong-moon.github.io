@@ -2,6 +2,7 @@
 title: BinaryFormatter의 문제와 해결 방안
 date: 2025-08-04T12:00:00+09:00
 draft: false
+description: ".NET의 BinaryFormatter가 가진 보안 취약성과 호환성 문제를 분석하고, DataContract, ISerializable, JSON 등 8가지 대안적 직렬화 방법을 상세히 소개합니다."
 showDateUpdated: false
 created: 2024-10-24
 modified: 2025-08-04T12:00:00+09:00

@@ -2,6 +2,7 @@
 title: "외부 기사 - 왜 Fathom Analytics로 바꿨는가"
 date: 2019-01-24
 draft: true
+description: "Google Analytics에서 프라이버시 친화적인 Fathom Analytics로 전환한 이유를 설명하는 외부 링크 기사입니다."
 externalUrl: "https://jamespanther.com/writings/i-switched-from-google-analytics-to-fathom-analytics/"
 summary: "`externalUrl` 프론트 매터 매개변수는 어떤 URL이든 링크할 수 있습니다. 이 기사는 다른 기사와 동일하게 보이지만 Hugo 프로젝트 외부의 게시물로 링크됩니다."
 showReadingTime: false

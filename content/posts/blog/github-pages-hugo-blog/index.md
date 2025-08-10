@@ -2,6 +2,7 @@
 title: GitHub Pages + Hugo 블로그 개설 및 플랫폼 선택 이유
 date: 2024-09-08T01:05:17+09:00
 draft: false
+description: "GitHub Pages와 Hugo를 선택한 이유와 Congo 테마로 블로그를 구축하는 방법을 소개합니다. Markdown 기반 글쓰기, Obsidian 연동, 빠른 속도 등 개발자 친화적인 블로그 플랫폼의 장점을 설명합니다."
 showDateUpdated: false
 created: 2024-09-08T01:05:17+09:00
 modified: 2024-09-19T12:41:55+09:00
