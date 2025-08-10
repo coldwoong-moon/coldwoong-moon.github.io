@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://coldwoong-moon.github.io/sitemap_index.xml
 Sitemap: https://coldwoong-moon.github.io/sitemap.xml

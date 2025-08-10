@@ -69,7 +69,8 @@
       "WebFetch(domain:coldwoong-moon.github.io)",
       "Bash(git reset:*)",
       "Bash(xmllint:*)",
-      "WebFetch(domain:developers.google.com)"
+      "WebFetch(domain:developers.google.com)",
+      "WebFetch(domain:www.sitemaps.org)"
     ],
     "deny": []
   }
