@@ -6,10 +6,14 @@
   <url>
     <loc>{{ .Permalink }}</loc>
     {{- if or .IsHome (eq .Section "posts") }}
-      {{- if .Lastmod }}
+      {{- $validLastmod := and .Lastmod (.Lastmod.Before now) }}
+      {{- $validDate := and (not .Date.IsZero) (.Date.Before now) }}
+      {{- if $validLastmod }}
     <lastmod>{{ .Lastmod.Format "2006-01-02T15:04:05" | safeHTML }}+09:00</lastmod>
-      {{- else if not .Date.IsZero }}
+      {{- else if $validDate }}
     <lastmod>{{ .Date.Format "2006-01-02T15:04:05" | safeHTML }}+09:00</lastmod>
+      {{- else }}
+    <lastmod>{{ now.Format "2006-01-02T15:04:05" | safeHTML }}+09:00</lastmod>
       {{- end }}
     {{- end }}
     {{- if .IsHome }}
