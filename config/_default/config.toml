@@ -7,7 +7,7 @@ baseURL = "https://coldwoong-moon.github.io/"
 languageCode = "ko"
 defaultContentLanguage = "ko"
 
-enableRobotsTXT = true
+enableRobotsTXT = false
 summaryLength = 0
 
 [pagination]
