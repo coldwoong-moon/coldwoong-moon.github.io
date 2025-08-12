@@ -18,5 +18,5 @@ summaryLength = 0
 
 [sitemap]
   changefreq = "weekly"
-  filename = "sitemap.xml"
   priority = 0.5
+  filename = "sitemap.xml"
