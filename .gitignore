@@ -32,3 +32,28 @@ frontmatter.json
 
 # macOS system files
 .DS_Store
+
+# Security and sensitive files
+.env*
+*.key
+*.pem
+*.p12
+*.pfx
+secrets/
+config/local*
+*secret*
+*credential*
+*password*
+auth.json
+service-account*.json
+
+# IDE and editor settings that might contain sensitive info
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# Backup files that might contain sensitive data
+*.bak
+*.backup
+*.old

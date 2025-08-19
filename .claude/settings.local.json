@@ -70,7 +70,8 @@
       "Bash(git reset:*)",
       "Bash(xmllint:*)",
       "WebFetch(domain:developers.google.com)",
-      "WebFetch(domain:www.sitemaps.org)"
+      "WebFetch(domain:www.sitemaps.org)",
+      "Bash(git log:*)"
     ],
     "deny": []
   }
