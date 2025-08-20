@@ -5,13 +5,13 @@ body > header {
   left: 0 !important;
   right: 0 !important;
   z-index: 1000 !important;
-  background: rgba(var(--color-neutral), 0.95) !important;
+  background: rgba(255, 255, 255, 0.98) !important;
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
 }
 
 .dark body > header {
-  background: rgba(var(--color-neutral-900), 0.95) !important;
+  background: rgba(24, 24, 27, 0.98) !important;
 }
 
 /* 헤더 내부 nav 요소의 너비와 패딩 조정 */
