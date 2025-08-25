@@ -145,6 +145,16 @@
   {{ partial "vendor.html" . }}
   {{/* Analytics */}}
   {{ partial "analytics.html" . }}
+  {{/* Google Analytics */}}
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LTD2J8C18"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0LTD2J8C18');
+  </script>
   {{/* Extend head - eg. for custom analytics scripts, etc. */}}
   {{ if templates.Exists "_partials/extend-head.html" }}
     {{ partial "extend-head.html" . }}
