@@ -1,17 +1,36 @@
-{{ printf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" | safeHTML }}
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  {{- range .Data.Pages -}}
-    {{- if not .Params.private -}}
-  <url>
-    <loc>{{ .Permalink | absURL }}</loc>
-    {{- if .Lastmod }}
-    <lastmod>{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}</lastmod>
-    {{- else if .Date }}
-    <lastmod>{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}</lastmod>
-    {{- end }}
-    <changefreq>weekly</changefreq>
-    <priority>{{ if .IsHome }}1.0{{ else if eq .Section "posts" }}0.8{{ else }}0.5{{ end }}</priority>
-  </url>
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML -}}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"{{ if hugo.IsMultilingual }} xmlns:xhtml="http://www.w3.org/1999/xhtml"{{ end }}>
+  {{- $excluded := (default (slice) .Site.Params.sitemap.excludedKinds) -}}
+
+  {{- /* Include the homepage first */ -}}
+  {{- with .Site.Home -}}
+    {{- if not (in $excluded .Kind) -}}
+    <url>
+      <loc>{{ .Permalink }}</loc>{{ if not .Lastmod.IsZero }}
+      <lastmod>{{ safeHTML (.Lastmod.Format "2006-01-02T15:04:05-07:00") }}</lastmod>{{ end }}{{ with .Sitemap.ChangeFreq }}
+      <changefreq>{{ . }}</changefreq>{{ end }}{{ if ge .Sitemap.Priority 0.0 }}
+      <priority>{{ .Sitemap.Priority }}</priority>{{ end }}{{ if .IsTranslated }}{{ range .Translations }}
+      <xhtml:link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" />{{ end }}
+      <xhtml:link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" />{{ end }}
+    </url>
+    {{- end -}}
+  {{- end -}}
+
+  {{- /* Iterate over all site pages (regular, section, taxonomy, etc.) */ -}}
+  {{- range .Site.Pages -}}
+    {{- if not (in $excluded .Kind) -}}
+      {{- if and ((.Param "xml" | default true)) (not (isset .Params "externalUrl")) -}}
+        {{- if and .Permalink (not .IsHome) -}}
+    <url>
+      <loc>{{ .Permalink }}</loc>{{ if not .Lastmod.IsZero }}
+      <lastmod>{{ safeHTML (.Lastmod.Format "2006-01-02T15:04:05-07:00") }}</lastmod>{{ end }}{{ with .Sitemap.ChangeFreq }}
+      <changefreq>{{ . }}</changefreq>{{ end }}{{ if ge .Sitemap.Priority 0.0 }}
+      <priority>{{ .Sitemap.Priority }}</priority>{{ end }}{{ if .IsTranslated }}{{ range .Translations }}
+      <xhtml:link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" />{{ end }}
+      <xhtml:link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" />{{ end }}
+    </url>
+        {{- end -}}
+      {{- end -}}
     {{- end -}}
   {{- end -}}
 </urlset>

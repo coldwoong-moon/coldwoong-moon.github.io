@@ -14,7 +14,8 @@ summaryLength = 0
   pagerSize = 10
 
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  # Ensure sitemap is emitted for the home page
+  home = ["HTML", "RSS", "JSON", "SITEMAP"]
 
 [sitemap]
   changefreq = "weekly"

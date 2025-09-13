@@ -57,6 +57,20 @@ jobs:
           hugo \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
+      - name: Verify sitemap exists
+        run: |
+          if [ ! -f public/sitemap.xml ]; then
+            echo "ERROR: public/sitemap.xml not found after build."
+            echo "Listing public/ for debugging..."
+            find public -maxdepth 2 -type f | sort || true
+            exit 1
+          fi
+          head -n 10 public/sitemap.xml || true
+      - name: Validate sitemap XML
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y --no-install-recommends libxml2-utils
+          xmllint --noout public/sitemap.xml
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
