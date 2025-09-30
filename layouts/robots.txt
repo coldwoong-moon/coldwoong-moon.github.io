@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Sitemap for Google Search Console
-Sitemap: {{ "sitemap.xml" | absURL }}
+Sitemap: https://coldwoong-moon.github.io/sitemap.xml
