@@ -14,9 +14,4 @@ summaryLength = 0
   pagerSize = 10
 
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
-
-[sitemap]
-  changefreq = "weekly"
-  priority = 0.5
-  filename = "sitemap.xml"
+  home = ["HTML", "RSS", "JSON", "XML", "TXT"]
