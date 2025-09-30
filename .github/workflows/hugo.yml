@@ -57,6 +57,14 @@ jobs:
           hugo \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
+      - name: Verify sitemap.xml generation
+        run: |
+          if [ ! -f ./public/sitemap.xml ]; then
+            echo "Error: sitemap.xml was not generated!"
+            exit 1
+          fi
+          echo "✓ sitemap.xml generated successfully"
+          echo "Sitemap contains $(grep -o '<loc>' ./public/sitemap.xml | wc -l) URLs"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
