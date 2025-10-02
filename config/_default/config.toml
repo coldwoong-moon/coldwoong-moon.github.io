@@ -15,3 +15,9 @@ summaryLength = 0
 
 [outputs]
   home = ["HTML", "RSS", "JSON", "XML", "TXT"]
+
+[minify]
+  minifyOutput = true
+  [minify.tdewolff]
+    [minify.tdewolff.xml]
+      keepWhitespace = true
