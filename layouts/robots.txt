@@ -1,4 +1,3 @@
 User-agent: *
-Allow: /
-
-Sitemap: https://coldwoong-moon.github.io/sitemap.xml
+{{ range .Pages }}{{ if eq .Kind "home" }}
+Sitemap: {{ .Permalink }}sitemap.xml{{ end }}{{ end }}
